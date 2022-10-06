@@ -4,7 +4,7 @@
   "description": "",
   "main": "convertBytesToHuman.js",
   "scripts": {
-    "test": "jest"
+    "test": "../node_modules/.bin/jest"
   },
   "jest": {
     "transform": {
