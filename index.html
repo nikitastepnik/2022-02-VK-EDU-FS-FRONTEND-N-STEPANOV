@@ -40,11 +40,12 @@
 
     form.addEventListener('submit', handleSubmit);
 
-    insertLocalStorage(1, "Jen")
+    insertLocalStorage(0, "Jen")
+    insertMessage(0)
 
     let msgId = window.localStorage.length;
 
-    for (let i = 0; i < window.localStorage.length; i++) {
+    for (let i = 1; i < window.localStorage.length; i++) {
         insertMessage(i)
     }
 
