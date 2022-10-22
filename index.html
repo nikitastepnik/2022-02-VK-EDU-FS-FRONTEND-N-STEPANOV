@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Chat</title>
+<link href="style.css" rel="stylesheet"></head>
+<body>
+<div class="sum-screen">
+    <div class="form-container">
+        <div class="form-frame">
+            <div class="form-frame-content">
+                <i class="material-icons" id="icon-arrow-back">arrow_back</i>
+                <i class="material-icons" id="icon-profile">account_circle</i>
+                <div class="companion-info">
+                    <div class="form-text">Дженнифер</div>
+                    <div class="form-text-after">была 2 часа назад</div>
+                </div>
+                <i class="material-icons" id="icon-search">search</i>
+                <i class="material-icons" id="icon-more-vert">more_vert</i>
+            </div>
+        </div>
+        <div class="chat-scroll">
+            <div class="message-Jen"></div>
+            <div class="message-me"></div>
+        </div>
+        <form class="form" action="/">
+            <div class="input-container">
+                <input class="form-input" name="message-text" placeholder="Сообщение" type="text"/>
+                <i class="material-icons" id="icon-attach">attachment</i>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+    const form = document.querySelector('form');
+    const input = document.querySelector('.form-input');
+    const messageContainer = document.querySelector('.chat-scroll');
+
+    form.addEventListener('submit', handleSubmit);
+
+    insertLocalStorage(1, "Jen")
+
+    let msgId = window.localStorage.length;
+
+    for (let i = 0; i < window.localStorage.length; i++) {
+        insertMessage(i)
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        if (input.value === "") {
+            return;
+        }
+
+        insertLocalStorage(msgId)
+        insertMessage(msgId)
+        msgId += 1
+
+
+        input.value = ""
+    }
+
+    function insertLocalStorage(msgId = 0, msgType = "Me") {
+        if (msgType === "Jen") {
+            window.localStorage.setItem(String(msgId), JSON.stringify({
+                "Name": 'Дженнифер', "text": "Привет!",
+                "typeMsg": "Jen",
+                "curTime": "10:53"
+            }))
+        } else {
+            let Data = new Date()
+            let Hours = Data.getHours().toLocaleString("ru-Ru")
+            let Minutes = Data.getMinutes().toLocaleString("ru-Ru")
+            if (Minutes < 10) {
+                Minutes = "0" + Minutes
+            }
+            if (Hours < 10) {
+                Hours = "0" + Hours
+            }
+            window.localStorage.setItem(String(msgId), JSON.stringify({
+                "Name": 'Я', "text": input.value,
+                "typeMsg": "Me",
+                "curTime": Hours + ":" + Minutes
+            }))
+        }
+    }
+
+    function insertMessage(msgId) {
+        msgObj = JSON.parse(window.localStorage.getItem(msgId))
+        if (msgObj === null) {
+            return
+        }
+        msgText = msgObj.text
+        msgTime = msgObj.curTime
+        msgAuthor = msgObj.Name
+        typeMsg = msgObj.typeMsg
+
+        if (typeMsg === "Me") {
+            messageContainer.insertAdjacentHTML("afterBegin", '<div class="message-me">' + '<div class="msg-author">'
+                + msgAuthor + '</div>' + '<div class="msg-text">' + msgText +
+                '</div>' + '<div class="msg-time">' + msgTime + '<i class="material-icons" id="icon-done">' + 'done' + '</i>' +
+                '</div>' + '</div>' + '</div>')
+        } else {
+            messageContainer.insertAdjacentHTML("afterBegin", '<div class="message-Jen">' + '<div class="msg-author">'
+                + msgAuthor + '</div>' + '<div class="msg-text">' + msgText +
+                '</div>' + '<div class="msg-time">' + msgTime + '<i class="material-icons" id="icon-done">' + 'done_all' + '</i>' +
+                '</div>' + '</div>' + '</div>')
+        }
+    }
+</script>
+<script type="text/javascript" src="bundle.js"></script></body>
+</html>
