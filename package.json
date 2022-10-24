@@ -1,0 +1,19 @@
+{
+  "name": "2022-2-vk-edu-fs-frontend-n-stepanov",
+  "version": "1.0.0",
+  "description": "Домашние работы блока Frontend (JS) курса VK Fullstack-разработка",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikitastepnik/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikitastepnik/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/issues"
+  },
+  "homepage": "https://github.com/nikitastepnik/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV#readme"
+}
