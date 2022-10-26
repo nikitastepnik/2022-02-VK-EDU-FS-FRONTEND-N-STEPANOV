@@ -75,6 +75,7 @@ html {
 }
 
 .message-me {
+    position: relative;
     color: black;
     border-radius: 5px;
     display: inline-block;
@@ -82,44 +83,41 @@ html {
     min-width: 30px;
     min-height: auto;
     background-color: rgba(241, 229, 244);
-    margin: 0 0.5px 5px auto;
+    margin: 0 15px 5px auto;
     padding: 8px 11px;
     overflow-wrap: break-word;
 }
 
-/*.msg-text {*/
-/*    max-width: 90%;*/
-/*    !*ma*!*/
-/*}*/
-
 .message-Jen {
+    position: relative;
     color: black;
     border-radius: 5px;
     display: inline-block;
     max-width: 400px;
     min-width: 65px;
     background-color: rgba(255, 255, 255);
-    margin: 0 auto 5px 0.5px;
+    margin: 0 auto 5px 15px;
     padding: 8px 11px;
     overflow-wrap: break-word;
 }
-/*.message-me::after {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    margin: -15.5px 0 0 43px;*/
-/*    border: 10px solid;*/
-/*    border-color: transparent transparent rgba(241, 229, 244) transparent;*/
-/*}*/
 
+.message-me::after {
+    content: '';
+    position: absolute;
+    margin: -15.5px 0 0 auto;
+    right: -10px;
+    border: 10px solid;
+    border-color: transparent transparent rgba(241, 229, 244) transparent;
+}
 
-/*.message-Jen::after {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    margin: -15.5px;*/
-/*    left: 536.65px;*/
-/*    border: 10px solid;*/
-/*    border-color: transparent transparent rgba(255, 255, 255) transparent;*/
-/*}*/
+.message-Jen::after {
+    content: '';
+    position: absolute;
+    margin: -15.5px auto 0 0;
+    left: -10px;
+    border: 10px solid;
+    border-color: transparent transparent rgba(255, 255, 255) transparent;
+}
 
 .message-me:empty {
     display: none;
