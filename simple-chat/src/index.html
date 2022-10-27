@@ -6,7 +6,10 @@
     <title>Chat</title>
 </head>
 <body>
-<div class="sum-screen">
+<div class="screen-list-chat" id="screen-list-chat">
+    <div class="form-frame"></div>
+</div>
+<div class="screen-chat" id="screen-chat">
     <div class="form-container">
         <div class="form-frame">
             <div class="form-frame-content">
@@ -32,8 +35,10 @@
         </form>
     </div>
 </div>
-</div>
 <script>
+    document.getElementById("screen-list-chat").style.display = "flex"
+    document.getElementById("screen-chat").style.display = "none"
+
     const form = document.querySelector('form');
     const input = document.querySelector('.form-input');
     const messageContainer = document.querySelector('.chat-scroll');
