@@ -1,0 +1,30 @@
+#icon-search {
+    text-align: center;
+    flex-basis: 20%;
+}
+
+#icon-more-vert {
+    text-align: center;
+    flex-basis: 15%;
+}
+
+
+#icon-done {
+    font-size: 13px;
+    color: rgba(131, 51, 164);
+}
+
+#icon-attach {
+    width: 35px;
+    height: 25px;
+}
+
+#icon-arrow-back {
+    flex-basis: 15%;
+}
+
+#icon-profile {
+    flex-basis: 20%;
+    text-align: right;
+    font-size: 50px;
+}
