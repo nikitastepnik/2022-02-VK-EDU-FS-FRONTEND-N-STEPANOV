@@ -69,18 +69,17 @@
 
     function listChatsOpened(insert = true) {
         const listChats = document.getElementById("list-chats")
+        alert(1)
         for (let key of Object.keys(Chats)) {
             if (insert) {
                 const curChatMessages = JSON.parse(window.localStorage.getItem(Chats[key]))
-                if (curChatMessages) {
-                    if (!curChatMessages[0].factFirstRendering) {
+                if (!curChatMessages) {
                         insertLocalStorage({
                             "msgComp": Chats[key],
                             "msgType": Chats[key],
                             "msgAuthor": key,
                             "factFirstRendering": true
                         })
-                    }
                 }
                 listChats.insertAdjacentHTML("beforeEnd", '<div id =' + "" + key + "" + ' class="single-chat"' +
                     'onclick="swapScreenChat(this.id)">' +
