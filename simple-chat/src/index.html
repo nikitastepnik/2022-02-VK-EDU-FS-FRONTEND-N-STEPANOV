@@ -69,7 +69,6 @@
 
     function listChatsOpened(insert = true) {
         const listChats = document.getElementById("list-chats")
-        alert(1)
         for (let key of Object.keys(Chats)) {
             if (insert) {
                 const curChatMessages = JSON.parse(window.localStorage.getItem(Chats[key]))
