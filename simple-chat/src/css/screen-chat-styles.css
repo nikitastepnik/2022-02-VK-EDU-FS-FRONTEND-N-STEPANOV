@@ -22,33 +22,6 @@
     margin-right: 0;
 }
 
-.form-frame {
-    z-index: 999;
-    font-size: 18px;
-    height: 80px;
-    width: 400px;
-    text-align: center;
-    color: white;
-    margin: 0 auto;
-    background-color: rgba(131, 51, 164);
-}
-
-.form-frame-content {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-}
-
-.form-text-after {
-    font-size: 11.5px;
-    color: rgba(200, 167, 215);
-}
-
-.form-text {
-    margin-top: 30px;
-}
-
 .form-container {
     display: flex;
     flex-direction: column;
@@ -129,7 +102,6 @@
     margin: 0 -5px -8px -10px;
     text-align: right;
 }
-
 
 .companion-info {
     flex-basis: 30%;

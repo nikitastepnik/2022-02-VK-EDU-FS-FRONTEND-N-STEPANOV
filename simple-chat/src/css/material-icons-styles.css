@@ -1,13 +1,24 @@
-#icon-search {
+#icon-search-screen-chat {
     text-align: center;
     flex-basis: 20%;
 }
 
-#icon-more-vert {
+#icon-search-screen-list-chats {
+    text-align: center;
+    flex-basis: 20%;
+    margin-bottom: -10px;
+}
+
+#icon-more-vert-screen-chat {
     text-align: center;
     flex-basis: 15%;
 }
 
+#icon-dehaze-screen-list-chats {
+    text-align: right;
+    flex-basis: 10%;
+    margin-bottom: -10px;
+}
 
 #icon-done {
     font-size: 13px;
@@ -19,8 +30,13 @@
     height: 25px;
 }
 
-#icon-arrow-back {
+#icon-arrow-back-screen-chat {
     flex-basis: 15%;
+}
+
+#icon-arrow-back-screen-list-chats {
+    flex-basis: 15%;
+    text-align: right;
 }
 
 #icon-profile {
