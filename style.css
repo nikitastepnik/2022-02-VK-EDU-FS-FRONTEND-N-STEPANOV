@@ -143,7 +143,7 @@ html {
 #text-single-chat-screen-list-chats {
     display: flex;
     flex-direction: column;
-    flex-basis: 55%;
+    flex-basis: 65%;
     text-align: left;
     height: 100%;
 }
@@ -153,6 +153,11 @@ html {
     margin-top: 5px;
     color: rgba(115, 115, 115);
     font-size: 15px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 239.5px;
     font-weight: normal;
 }
 
@@ -160,7 +165,8 @@ html {
 #msg-time-list-chats-screen {
     display: flex;
     flex-direction: column;
-    flex-basis: 25%;
+    text-align: center;
+    flex-basis: 15%;
 }
 .screen-chat {
     width: 100vw;
@@ -204,7 +210,7 @@ html {
     color: black;
     border-radius: 5px;
     display: inline-block;
-    max-width: 400px;
+    max-width: 370px;
     min-width: 30px;
     min-height: auto;
     background-color: rgba(241, 229, 244);
@@ -218,7 +224,7 @@ html {
     color: black;
     border-radius: 5px;
     display: inline-block;
-    max-width: 400px;
+    max-width: 385px;
     min-width: 65px;
     background-color: rgba(255, 255, 255);
     margin: 0 auto 5px 15px;
