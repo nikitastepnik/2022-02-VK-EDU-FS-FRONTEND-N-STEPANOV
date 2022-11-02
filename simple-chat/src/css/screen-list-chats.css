@@ -1,8 +1,15 @@
+.screen-list-chats-container {
+    display: flex;
+    justify-content: center;
+}
+
 .screen-list-chats {
+    position: relative;
+    cursor: default;
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    width: 100vw;
+    width: 400px;
 }
 
 #form-frame-content-screen-list-chats {
@@ -15,6 +22,20 @@
     margin-left: 37px;
     margin-bottom: -10px;
     text-align: left;
+    background: linear-gradient(45deg, lightgreen, aliceblue, cornflowerblue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: background 5s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes background {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 100px;
+    }
 }
 
 #form-frame-screen-list-chats {
@@ -23,6 +44,7 @@
 
 .list-chats {
     display: flex;
+    overflow-y: scroll;
     flex-direction: column;
     height: 85%;
     width: 400px;
@@ -45,18 +67,48 @@
     display: none;
 }
 
+.single-chat:hover {
+    background-color: rgba(245, 246, 247);
+}
+
+.single-chat:active {
+    background-color: rgba(92, 145, 194);
+}
+
 #icon-profile-screen-list-chats {
-    background-color: white;
+
     flex-basis: 20%;
     font-size: 50px;
     text-align: center;
     margin-bottom: -12.5px;
 }
 
+#icon-search-screen-list-chats {
+    transition-property: animation;
+    transition-delay: 2s;
+}
+
+#icon-search-screen-list-chats:hover {
+    font-weight: bolder;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 #text-single-chat-screen-list-chats {
     display: flex;
     flex-direction: column;
-    flex-basis: 55%;
+    flex-basis: 65%;
     text-align: left;
     height: 100%;
 }
@@ -66,12 +118,29 @@
     margin-top: 5px;
     color: rgba(115, 115, 115);
     font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 239.5px;
     font-weight: normal;
 }
-
 
 #msg-time-list-chats-screen {
     display: flex;
     flex-direction: column;
-    flex-basis: 25%;
+    text-align: center;
+    flex-basis: 15%;
+}
+
+#icon-create-screen-list-chats {
+    position: absolute;
+    font-size: 25px;
+    background-color: rgb(248, 212, 111);
+    /*bottom: 16px;*/
+    right: 16px;
+    color: rgb(114, 97, 46);
+    border-radius: 50%;
+    padding: 16px;
+    bottom: 10%;
+    animation: pulse 2s infinite;
 }
