@@ -49,6 +49,26 @@
     overflow-wrap: break-word;
 }
 
+.message-me-with-anim {
+    position: relative;
+    color: black;
+    border-radius: 5px;
+    display: inline-block;
+    max-width: 370px;
+    min-width: 30px;
+    min-height: auto;
+    background-color: rgba(241, 229, 244);
+    margin: 0 15px 5px auto;
+    padding: 8px 11px;
+    overflow-wrap: break-word;
+    opacity: 0;
+    transition: 1s;
+    animation: show 3s 1;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+
 .message-Jen {
     position: relative;
     color: black;
@@ -62,7 +82,25 @@
     overflow-wrap: break-word;
 }
 
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .message-me::after {
+    content: '';
+    position: absolute;
+    margin: -15.5px 0 0 auto;
+    right: -10px;
+    border: 10px solid;
+    border-color: transparent transparent rgba(241, 229, 244) transparent;
+}
+
+.message-me-with-anim::after {
     content: '';
     position: absolute;
     margin: -15.5px 0 0 auto;
