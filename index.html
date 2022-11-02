@@ -2,20 +2,24 @@
 <html>
 <head lang="en">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Chat</title>
 <link href="style.css" rel="stylesheet"></head>
 <body>
-<div class="screen-list-chats" id="screen-list-chats">
-    <div class="form-frame" id="form-frame-screen-list-chats">
-        <div class="form-frame-content" id="form-frame-content-screen-list-chats">
-            <i class="material-icons" id="icon-dehaze-screen-list-chats">dehaze</i>
-            <div class="form-text" id="form-text-screen-list-chats">Messenger</div>
-            <i class="material-icons" id="icon-search-screen-list-chats">search</i>
+<div class="screen-list-chats-container">
+    <div class="screen-list-chats" id="screen-list-chats">
+        <div class="form-frame" id="form-frame-screen-list-chats">
+            <div class="form-frame-content" id="form-frame-content-screen-list-chats">
+                <i class="material-icons" id="icon-dehaze-screen-list-chats">dehaze</i>
+                <div class="form-text" id="form-text-screen-list-chats">Messenger</div>
+                <i class="material-icons" id="icon-search-screen-list-chats">search</i>
+            </div>
         </div>
-    </div>
-    <div class="list-chats" id="list-chats">
-        <div class="single-chat"></div>
+        <div class="list-chats" id="list-chats">
+            <div class="single-chat"></div>
+        </div>
+        <i class="material-icons" id="icon-create-screen-list-chats">create</i>
     </div>
 </div>
 <div class="screen-chat" id="screen-chat">
@@ -48,7 +52,10 @@
 <script>
     document.getElementById("screen-list-chats").style.display = "flex"
     document.getElementById("screen-chat").style.display = "none"
-    const Chats = {"Дженнифер": "Jen", "Никита": "Nick", "Егор": "Egor", "Марина": "Marine", "Стефан": "Stefan"}
+    const Chats = {
+        "Дженнифер": "Jen", "Никита": "Nick", "Егор": "Egor", "Марина": "Marine", "Стефан": "Stefan",
+        "Николай": "Nik", "Алла": "All", "Тамара": "Tom", "Олег": "Oleg"
+    }
     const mansNames = ["Никита", "Егор", "Стефан"]
 
     if (document.getElementById("screen-list-chats")) {
@@ -73,12 +80,12 @@
             if (insert) {
                 const curChatMessages = JSON.parse(window.localStorage.getItem(Chats[key]))
                 if (!curChatMessages) {
-                        insertLocalStorage({
-                            "msgComp": Chats[key],
-                            "msgType": Chats[key],
-                            "msgAuthor": key,
-                            "factFirstRendering": true
-                        })
+                    insertLocalStorage({
+                        "msgComp": Chats[key],
+                        "msgType": Chats[key],
+                        "msgAuthor": key,
+                        "factFirstRendering": true
+                    })
                 }
                 listChats.insertAdjacentHTML("beforeEnd", '<div id =' + "" + key + "" + ' class="single-chat"' +
                     'onclick="swapScreenChat(this.id)">' +
@@ -157,7 +164,7 @@
         }
 
         insertLocalStorage({"msgComp": msgComp, "msgText": input.value})
-        insertMessage(msgComp, contentChat.length)
+        insertMessage(msgComp, contentChat.length, anim = true)
 
         input.value = ""
     }
@@ -209,7 +216,7 @@
         }
     }
 
-    function insertMessage(msgComp, index = 0) {
+    function insertMessage(msgComp, index = 0, anim = false) {
         const messageContainer = document.querySelector('.chat-scroll');
         messages = JSON.parse(window.localStorage.getItem(msgComp))
         msgObj = messages[index]
@@ -221,10 +228,17 @@
         msgAuthor = msgObj.Name
         typeMsg = msgObj.typeMsg
         if (typeMsg === "Me") {
-            messageContainer.insertAdjacentHTML("afterBegin", '<div class="message-me">' + '<div class="msg-author">'
-                + msgAuthor + '</div>' + '<div class="msg-text">' + msgText +
-                '</div>' + '<div class="msg-time">' + msgTime + '<i class="material-icons" id="icon-done">' + 'done' + '</i>' +
-                '</div>' + '</div>' + '</div>')
+            if (anim) {
+                messageContainer.insertAdjacentHTML("afterBegin", '<div class="message-me-with-anim">' + '<div class="msg-author">'
+                    + msgAuthor + '</div>' + '<div class="msg-text">' + msgText +
+                    '</div>' + '<div class="msg-time">' + msgTime + '<i class="material-icons" id="icon-done">' + 'done' + '</i>' +
+                    '</div>' + '</div>' + '</div>')
+            } else {
+                messageContainer.insertAdjacentHTML("afterBegin", '<div class="message-me">' + '<div class="msg-author">'
+                    + msgAuthor + '</div>' + '<div class="msg-text">' + msgText +
+                    '</div>' + '<div class="msg-time">' + msgTime + '<i class="material-icons" id="icon-done">' + 'done' + '</i>' +
+                    '</div>' + '</div>' + '</div>')
+            }
         } else {
             messageContainer.insertAdjacentHTML("afterBegin", '<div class="message-Jen">' + '<div class="msg-author">'
                 + msgAuthor + '</div>' + '<div class="msg-text">' + msgText +

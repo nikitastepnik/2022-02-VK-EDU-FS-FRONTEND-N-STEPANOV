@@ -85,11 +85,18 @@ html {
     text-align: right;
     font-size: 50px;
 }
+.screen-list-chats-container {
+    display: flex;
+    justify-content: center;
+}
+
 .screen-list-chats {
+    position: relative;
+    cursor: default;
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    width: 100vw;
+    width: 400px;
 }
 
 #form-frame-content-screen-list-chats {
@@ -102,6 +109,20 @@ html {
     margin-left: 37px;
     margin-bottom: -10px;
     text-align: left;
+    background: linear-gradient(45deg, lightgreen, aliceblue, cornflowerblue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: background 5s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes background {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: 100px;
+    }
 }
 
 #form-frame-screen-list-chats {
@@ -110,6 +131,7 @@ html {
 
 .list-chats {
     display: flex;
+    overflow-y: scroll;
     flex-direction: column;
     height: 85%;
     width: 400px;
@@ -132,12 +154,42 @@ html {
     display: none;
 }
 
+.single-chat:hover {
+    background-color: rgba(245, 246, 247);
+}
+
+.single-chat:active {
+    background-color: rgba(92, 145, 194);
+}
+
 #icon-profile-screen-list-chats {
-    background-color: white;
+
     flex-basis: 20%;
     font-size: 50px;
     text-align: center;
     margin-bottom: -12.5px;
+}
+
+#icon-search-screen-list-chats {
+    transition-property: animation;
+    transition-delay: 2s;
+}
+
+#icon-search-screen-list-chats:hover {
+    font-weight: bolder;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 #text-single-chat-screen-list-chats {
@@ -153,7 +205,6 @@ html {
     margin-top: 5px;
     color: rgba(115, 115, 115);
     font-size: 15px;
-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -161,12 +212,24 @@ html {
     font-weight: normal;
 }
 
-
 #msg-time-list-chats-screen {
     display: flex;
     flex-direction: column;
     text-align: center;
     flex-basis: 15%;
+}
+
+#icon-create-screen-list-chats {
+    position: absolute;
+    font-size: 25px;
+    background-color: rgb(248, 212, 111);
+    /*bottom: 16px;*/
+    right: 16px;
+    color: rgb(114, 97, 46);
+    border-radius: 50%;
+    padding: 16px;
+    bottom: 10%;
+    animation: pulse 2s infinite;
 }
 .screen-chat {
     width: 100vw;
@@ -219,6 +282,26 @@ html {
     overflow-wrap: break-word;
 }
 
+.message-me-with-anim {
+    position: relative;
+    color: black;
+    border-radius: 5px;
+    display: inline-block;
+    max-width: 370px;
+    min-width: 30px;
+    min-height: auto;
+    background-color: rgba(241, 229, 244);
+    margin: 0 15px 5px auto;
+    padding: 8px 11px;
+    overflow-wrap: break-word;
+    opacity: 0;
+    transition: 1s;
+    animation: show 3s 1;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+
 .message-Jen {
     position: relative;
     color: black;
@@ -232,7 +315,25 @@ html {
     overflow-wrap: break-word;
 }
 
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .message-me::after {
+    content: '';
+    position: absolute;
+    margin: -15.5px 0 0 auto;
+    right: -10px;
+    border: 10px solid;
+    border-color: transparent transparent rgba(241, 229, 244) transparent;
+}
+
+.message-me-with-anim::after {
     content: '';
     position: absolute;
     margin: -15.5px 0 0 auto;
