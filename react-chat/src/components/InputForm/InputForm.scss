@@ -1,0 +1,37 @@
+.form {
+  width: 100%;
+  min-width: 400px;
+  max-width: 400px;
+  display: inline-block;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  justify-content: flex-end;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+input[type=submit] {
+  visibility: collapse;
+}
+
+input {
+  border: 0;
+  outline: none;
+  width: calc(100% - 2px);
+  padding: 15px 10px;
+}
+
+input::placeholder {
+  color: #999999;
+}
+
+.form-input {
+  flex-grow: 1;
+}
+
+#icon-attach {
+  width: 35px;
+  height: 25px;
+}
