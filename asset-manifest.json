@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/chats/static/css/main.cd0991a4.css",
-    "main.js": "/chats/static/js/main.a5b17bf9.js",
-    "index.html": "/chats/index.html",
-    "main.cd0991a4.css.map": "/chats/static/css/main.cd0991a4.css.map",
-    "main.a5b17bf9.js.map": "/chats/static/js/main.a5b17bf9.js.map"
+    "main.css": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/chats/static/css/main.cd0991a4.css",
+    "main.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/chats/static/js/main.a5b17bf9.js",
+    "index.html": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/chats/index.html",
+    "main.cd0991a4.css.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/chats/static/css/main.cd0991a4.css.map",
+    "main.a5b17bf9.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/chats/static/js/main.a5b17bf9.js.map"
   },
   "entrypoints": [
     "static/css/main.cd0991a4.css",
