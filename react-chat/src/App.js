@@ -18,7 +18,7 @@ export class App extends React.Component {
                 if (this.state.page === "chat") {
                     this.sumbitChat(false)
                 } else {
-                    this.sumbitChat(true)
+                    this.sumbitChat(true, this.state.chatComp)
                 }
             }
         )
