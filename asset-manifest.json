@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.cd0991a4.css",
-    "main.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.53710eae.js",
+    "main.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.8524e954.js",
     "index.html": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/index.html",
     "main.cd0991a4.css.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.cd0991a4.css.map",
-    "main.53710eae.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.53710eae.js.map"
+    "main.8524e954.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.8524e954.js.map"
   },
   "entrypoints": [
     "static/css/main.cd0991a4.css",
-    "static/js/main.53710eae.js"
+    "static/js/main.8524e954.js"
   ]
 }
