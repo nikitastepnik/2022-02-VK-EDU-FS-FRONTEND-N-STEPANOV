@@ -7,7 +7,9 @@ export function replaceUrl(location, replaceFlag = true) {
             window.history.replaceState({curPage: "chats"}, "", '#chats')
         }
     } else {
-        if (window.history.state === null) {
+        if (window.history.state === null && document.location.href.includes(homepage)) {
+            window.history.pushState({curPage: "chat"}, "", '#chats')
+        } else if (window.history.state === null) {
             window.history.pushState({curPage: "chat"}, "", homepage + '#chats')
         }
     }
