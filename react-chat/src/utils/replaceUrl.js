@@ -8,7 +8,7 @@ export function replaceUrl(location, replaceFlag = true) {
         }
     } else {
         if (window.history.state === null) {
-            window.history.pushState({curPage: "chat"}, "", homepage +'#chats')
+            window.history.pushState({curPage: "chat"}, "", homepage + '#chats')
         }
     }
 }
