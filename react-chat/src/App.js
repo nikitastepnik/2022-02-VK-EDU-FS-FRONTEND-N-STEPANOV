@@ -2,42 +2,50 @@ import './App.css';
 import React from "react";
 import {PageChatList} from "./pages/PageChatList/PageChatList";
 import {PageChat} from "./pages/PageChat";
+import {replaceUrl} from "./utils/replaceUrl";
 
 
 export class App extends React.Component {
     constructor(props) {
         super(props);
         this.sumbitChat = this.sumbitChat.bind(this)
-        window.history.replaceState(null, '','/#chats')
         this.state = {
             page: "chats",
             chatComp: ""
         }
-
+        replaceUrl(this.state.page, false)
         window.addEventListener('popstate', () => {
-                if (this.state.page === "chat") {
-                    this.sumbitChat(false)
-                } else {
-                    this.sumbitChat(true, this.state.chatComp)
-                }
+                this.callbackSubmitChat()
             }
         )
     }
 
+    callbackSubmitChat() {
+        if (this.state.page === "chat") {
+            this.sumbitChat(false)
+        } else {
+            this.sumbitChat(true, this.state.chatComp)
+        }
+    }
+
     sumbitChat(swap, chatComp) {
         if (swap) {
-            window.history.pushState(null, '/#chats', '/#single-chat')
             this.setState({
                     page: "chat",
                     chatComp: chatComp
                 }
             )
+            replaceUrl("chat")
         } else {
-            window.history.replaceState(null, '','/#chats')
             this.setState({
                 page: "chats",
             })
+            replaceUrl("chats")
         }
+    }
+
+    componentWillUnmount() {
+        console.log("removeChatScreenEventListener")
     }
 
     render() {

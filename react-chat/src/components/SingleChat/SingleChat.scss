@@ -21,7 +21,6 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  //border-bottom: 0.5px rgba(233, 233, 233, 0.3) solid;
   height: 10%;
   background-color: white;
   border-color: black;
@@ -33,6 +32,7 @@
   flex-direction: column;
   text-align: center;
   flex-basis: 25%;
+  align-items: center
 }
 
 #msg-text-list-chats-screen {
@@ -67,4 +67,10 @@
   flex-direction: row;
   align-items: center;
   margin-left: 5px;
+}
+
+#icon-done-screen-list-chats {
+  font-size: 13px;
+  color: rgb(131, 51, 164);
+  text-align: center;
 }

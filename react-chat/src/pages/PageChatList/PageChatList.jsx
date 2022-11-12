@@ -2,8 +2,8 @@ import React from "react";
 import './PageChatList.scss'
 
 import {MainPageArea} from "../../components/MainPageArea";
-import {HeaderPage} from "../../components/HeaderPage";
-
+import {Header} from "../../components/Header";
+import CreateIcon from '@mui/icons-material/Create';
 
 export class PageChatList extends React.Component {
     constructor(props) {
@@ -25,14 +25,18 @@ export class PageChatList extends React.Component {
         this.props.sumbitChat(true, handleElem.id)
     }
 
+    componentWillUnmount() {
+        console.log("removeSingleChatEventListener")
+    }
+
     render() {
         return (
             <div className={"screen-list-chats-container"}>
                 <div className={"screen-list-chats"} id={"screen-list-chats"}>
-                    <HeaderPage header={"PageListChat"}></HeaderPage>
+                    <Header header={"PageListChat"}></Header>
                     <MainPageArea chats={this.state.chats} areaType={"pageChatList"}
                                   handleClick={this.handleClick}></MainPageArea>
-                    <i className="material-icons" id="icon-create-screen-list-chats">create</i>
+                    <CreateIcon id="icon-create-screen-list-chats"></CreateIcon>
                 </div>
             </div>
         )
