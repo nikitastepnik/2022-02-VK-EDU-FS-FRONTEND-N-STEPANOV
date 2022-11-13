@@ -9,6 +9,7 @@ import {InputForm} from "../../components/InputForm";
 export class PageChat extends React.Component {
     constructor(props) {
         super(props);
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.state = {
             display: "flex",
             name: this.props.chatComp,
@@ -17,22 +18,17 @@ export class PageChat extends React.Component {
         }
     }
 
-    handleSubmit(event, msgComp) {
+    handleSubmit(event) {
         if (event.target[0].value) {
-            insertLocalStorage({"msgComp": msgComp, "msgText": event.target[0].value})
+            insertLocalStorage({"msgComp": this.state.name, "msgText": event.target[0].value})
         }
         event.preventDefault()
 
         this.setState({
-            msgsChat: JSON.parse(window.localStorage.getItem(this.props.chatComp)),
-            counter: this.state.counter + 1
+            msgsChat: JSON.parse(window.localStorage.getItem(this.state.name)),
+            counter: this.state.counter + 1,
         })
 
-        event.target[0].value = ""
-    }
-
-    componentWillUnmount() {
-        console.log("removeMessageEventListener")
     }
 
 
@@ -44,11 +40,8 @@ export class PageChat extends React.Component {
                             header={"PageChat"} submitChat={this.props.sumbitChat}></Header>
                     <MainPageArea msgAuthor={this.state.name} msgs={this.state.msgsChat} areaType={"pageChat"}>
                     </MainPageArea>
-                    <form className="form" action="/" onSubmit={(event) =>
-                        this.handleSubmit(event, this.state.name)}>
-                        <InputForm>
-                        </InputForm>
-                    </form>
+                    <InputForm handleSubmit={this.handleSubmit} name={this.state.name}>
+                    </InputForm>
                 </div>
             </div>
         )

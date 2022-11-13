@@ -17,17 +17,10 @@ export class PageChatList extends React.Component {
         }
     }
 
-    handleClick(event) {
-        let handleElem = event.target.parentNode
-        while (handleElem.className !== "single-chat-container") {
-            handleElem = handleElem.parentNode
-        }
-        this.props.sumbitChat(true, handleElem.id)
+    handleClick(event, chatComp) {
+        this.props.sumbitChat(true, chatComp)
     }
 
-    componentWillUnmount() {
-        console.log("removeSingleChatEventListener")
-    }
 
     render() {
         return (

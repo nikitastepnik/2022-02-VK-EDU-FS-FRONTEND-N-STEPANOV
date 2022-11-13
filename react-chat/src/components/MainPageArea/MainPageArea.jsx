@@ -34,7 +34,9 @@ export function MainPageArea(props) {
         return (
             <div className={"list-chats"}>{
                 props.chats ? Object.keys(props.chats).map((chat, key) => (
-                    <div className={"single-chat-container"} id={chat} onClick={props.handleClick} key={key}
+                    <div className={"single-chat-container"} id={chat}
+                         onClick={(event) => props.handleClick(event, chat)}
+                         key={key}
                     >
                         <SingleChat
                             msgText={getObjectFromLocalStorage(chat, -1).text}

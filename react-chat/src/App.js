@@ -20,6 +20,10 @@ export class App extends React.Component {
         )
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('popstate', this.callbackSubmitChat)
+    }
+
     callbackSubmitChat() {
         if (this.state.page === "chat") {
             this.sumbitChat(false)
@@ -44,9 +48,6 @@ export class App extends React.Component {
         }
     }
 
-    componentWillUnmount() {
-        console.log("removeChatScreenEventListener")
-    }
 
     render() {
         return (
