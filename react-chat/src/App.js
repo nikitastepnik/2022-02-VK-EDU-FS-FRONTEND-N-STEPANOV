@@ -2,21 +2,22 @@ import './App.css';
 import React from "react";
 import {PageChatList} from "./pages/PageChatList/PageChatList";
 import {PageChat} from "./pages/PageChat";
-import {replaceUrl} from "./utils/replaceUrl";
+import {insertUrlToBrowserHistory} from "./utils/insertUrlToBrowserHistory";
 
 
 export class App extends React.Component {
     constructor(props) {
         super(props);
         this.sumbitChat = this.sumbitChat.bind(this)
+        this.callbackSubmitChat = this.callbackSubmitChat.bind(this)
+
         this.state = {
             page: "chats",
             chatComp: ""
         }
-        replaceUrl(this.state.page, false)
-        window.addEventListener('popstate', () => {
-                this.callbackSubmitChat()
-            }
+        insertUrlToBrowserHistory(this.state.page)
+        window.addEventListener('popstate',
+            this.callbackSubmitChat
         )
     }
 
@@ -39,12 +40,12 @@ export class App extends React.Component {
                     chatComp: chatComp
                 }
             )
-            replaceUrl("chat")
+            insertUrlToBrowserHistory("chat")
         } else {
             this.setState({
                 page: "chats",
             })
-            replaceUrl("chats")
+            insertUrlToBrowserHistory("chats")
         }
     }
 
