@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.79ca33c6.css",
-    "main.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.f63108c6.js",
+    "main.css": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.4181667d.css",
+    "main.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.dbf5154b.js",
+    "static/media/god_bug.jpeg": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/media/god_bug.ca721b00a008ef451be7.jpeg",
     "index.html": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/index.html",
-    "main.79ca33c6.css.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.79ca33c6.css.map",
-    "main.f63108c6.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.f63108c6.js.map"
+    "main.4181667d.css.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.4181667d.css.map",
+    "main.dbf5154b.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.dbf5154b.js.map"
   },
   "entrypoints": [
-    "static/css/main.79ca33c6.css",
-    "static/js/main.f63108c6.js"
+    "static/css/main.4181667d.css",
+    "static/js/main.dbf5154b.js"
   ]
 }
