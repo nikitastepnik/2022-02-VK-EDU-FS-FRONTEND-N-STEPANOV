@@ -3,6 +3,8 @@ import {Message} from "../Message";
 import {SingleChat} from "../SingleChat";
 import {insertLocalStorage} from "../../utils/insertLocalStorage";
 import {getObjectFromLocalStorage} from "../../utils/getObjectFromLocalStorage";
+import {sortChats} from "../../utils/sortChats";
+import {displayMsgTimeInPrettyWay} from "../../utils/displayMsgTimeInPrettyWay";
 
 export function MainPageArea(props) {
 
@@ -15,7 +17,7 @@ export function MainPageArea(props) {
                             key={key}
                             msgAuthor={msg.Name}
                             msgText={msg.text}
-                            msgTime={msg.curTime}
+                            msgTime={displayMsgTimeInPrettyWay(msg.curTime)}
                             msgType={msg.msgType}
                             iconType={"done"}></Message>)).reverse() : null
                 }
@@ -31,16 +33,22 @@ export function MainPageArea(props) {
             }
         }
 
+        let chats = sortChats(Object.keys(props.chats))
+        let chatsComp = []
+        for (let elem of chats) {
+            chatsComp.push(elem.get("name"))
+        }
+
         return (
             <div className={"list-chats"}>{
-                props.chats ? Object.keys(props.chats).map((chat, key) => (
+                props.chats ? chatsComp.map((chat, key) => (
                     <div className={"single-chat-container"} id={chat}
                          onClick={(event) => props.handleClick(event, chat)}
                          key={key}
                     >
                         <SingleChat
                             msgText={getObjectFromLocalStorage(chat, -1).text}
-                            msgTime={getObjectFromLocalStorage(chat, -1).curTime}
+                            msgTime={displayMsgTimeInPrettyWay(getObjectFromLocalStorage(chat, -1).curTime)}
                             name={getObjectFromLocalStorage(chat, 0).Name}
                         ></SingleChat></div>)) : null
             }

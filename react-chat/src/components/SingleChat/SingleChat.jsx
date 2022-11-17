@@ -1,9 +1,11 @@
 import './SingleChat.scss'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DoneIcon from '@mui/icons-material/Done';
+import {Link} from "react-router-dom";
 
 export function SingleChat(props) {
     return (
+        <Link className={"link-single-chat"} to={"/single-chat"}>
         <div className={"single-chat"}>
             <AccountCircleIcon id="icon-profile-screen-list-chats"></AccountCircleIcon>
             <div className={"border-container"}>
@@ -16,5 +18,6 @@ export function SingleChat(props) {
 
             </div>
         </div>
+        </Link>
     )
 }

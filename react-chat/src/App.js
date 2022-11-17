@@ -1,8 +1,17 @@
 import './App.css';
 import React from "react";
+import {
+    HashRouter as Router,
+    Routes,
+    Route,
+    Navigate
+}
+    from "react-router-dom";
+
+
 import {PageChatList} from "./pages/PageChatList/PageChatList";
 import {PageChat} from "./pages/PageChat";
-import {insertUrlToBrowserHistory} from "./utils/insertUrlToBrowserHistory";
+import {PageProfile} from "./pages/PageProfile/PageProfile";
 
 
 export class App extends React.Component {
@@ -15,15 +24,8 @@ export class App extends React.Component {
             page: "chats",
             chatComp: ""
         }
-        insertUrlToBrowserHistory(this.state.page)
-        window.addEventListener('popstate',
-            this.callbackSubmitChat
-        )
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('popstate', this.callbackSubmitChat)
-    }
 
     callbackSubmitChat() {
         if (this.state.page === "chat") {
@@ -40,25 +42,29 @@ export class App extends React.Component {
                     chatComp: chatComp
                 }
             )
-            insertUrlToBrowserHistory("chat")
         } else {
             this.setState({
                 page: "chats",
             })
-            insertUrlToBrowserHistory("chats")
         }
     }
 
 
     render() {
         return (
-            <div>
-                {this.state.page === 'chats' && <PageChatList path="/home" sumbitChat={this.sumbitChat}>
-                </PageChatList>}
-                {this.state.page === 'chat' &&
-                    <PageChat chatComp={this.state.chatComp} sumbitChat={this.sumbitChat}>
-                    </PageChat>}
-            </div>
+            <Router>
+                <div className="App">
+                    <main>
+                        <Routes>
+                            <Route path='/' element={<Navigate replace to="chats"/>}/>
+                            {/*<Route path='/' element={<PageProfile/>}/>*/}
+                            <Route path='chats' element={<PageChatList sumbitChat={this.sumbitChat}/>}/>
+                            <Route path='single-chat'
+                                   element={<PageChat chatComp={this.state.chatComp} sumbitChat={this.sumbitChat}/>}/>
+                        </Routes>
+                    </main>
+                </div>
+            </Router>
         )
     }
 }

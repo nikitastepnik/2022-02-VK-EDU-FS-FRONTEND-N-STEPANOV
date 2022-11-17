@@ -27,6 +27,7 @@ export function insertLocalStorage(options) {
         let Data = new Date()
         let Hours = Data.getHours().toLocaleString("ru-Ru")
         let Minutes = Data.getMinutes().toLocaleString("ru-Ru")
+        let Sec = Data.getSeconds().toLocaleString("ru-Ru")
         if (Minutes < 10) {
             Minutes = "0" + Minutes
         }
@@ -37,7 +38,7 @@ export function insertLocalStorage(options) {
         contentChat.push({
             "Name": 'Я', "text": msgText,
             "msgType": "message-me",
-            "curTime": Hours + ":" + Minutes,
+            "curTime": Hours + ":" + Minutes + ":" + Sec,
             "checkType": false
         })
 

@@ -44,10 +44,6 @@
 }
 
 
-#icon-arrow-back-screen-chat {
-  flex-basis: 15%;
-}
-
 #icon-profile {
   flex-basis: 20%;
   text-align: right;
@@ -122,4 +118,10 @@
 #icon-search-screen-list-chats:hover {
   font-weight: bolder;
   animation: pulse 2s infinite;
+}
+
+a.link-arrow-back {
+  text-decoration: none;
+  color: inherit;
+  flex-basis: 15%;
 }
