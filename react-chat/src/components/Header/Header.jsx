@@ -39,6 +39,11 @@ export function Header(props) {
         return (
             <div className="header-frame">
                 <div className="header-frame-content">
+                    <Link className={"link-arrow-back"} to={"/chats"}>
+                        <ArrowBackIcon id="icon-arrow-back-screen-profile-chat" onClick={() => props.submitChat()}>
+                        </ArrowBackIcon>
+                    </Link>
+                    <div className="form-text" id="form-text-screen-chat-profile">Edit Profile</div>
                 </div>
             </div>
         )

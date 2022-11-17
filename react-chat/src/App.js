@@ -56,8 +56,8 @@ export class App extends React.Component {
                 <div className="App">
                     <main>
                         <Routes>
-                            <Route path='/' element={<Navigate replace to="chats"/>}/>
-                            {/*<Route path='/' element={<PageProfile/>}/>*/}
+                            {/*<Route path='/' element={<Navigate replace to="chats"/>}/>*/}
+                            <Route path='/' element={<PageProfile/>}/>
                             <Route path='chats' element={<PageChatList sumbitChat={this.sumbitChat}/>}/>
                             <Route path='single-chat'
                                    element={<PageChat chatComp={this.state.chatComp} sumbitChat={this.sumbitChat}/>}/>
