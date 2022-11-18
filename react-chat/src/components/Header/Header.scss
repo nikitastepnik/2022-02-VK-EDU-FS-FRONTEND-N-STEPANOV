@@ -132,8 +132,28 @@ a.link-arrow-back {
 
 #form-text-screen-chat-profile {
   margin-top: 10px;
+  flex-basis: 60%;
+  text-align: left;
+  padding-left: 18px;
 }
 
 #icon-arrow-back-screen-profile-chat {
   margin-top: 10px;
+  flex-basis: 20%;
+}
+
+.icon-done-screen-profile-chat {
+  margin-top: 10px;
+  flex-basis: 20%;
+  text-align: left;
+  padding-left: 20px;
+}
+
+a.link-profile-screen-chat {
+  flex-basis: 20%;
+  text-align: right;
+  font-size: 50px;
+  text-decoration: none;
+  color: inherit;
+  margin-top: 12.5px;
 }

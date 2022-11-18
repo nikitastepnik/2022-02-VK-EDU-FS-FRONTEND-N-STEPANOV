@@ -28,7 +28,8 @@ export class PageChatList extends React.Component {
                 <div className={"screen-list-chats"} id={"screen-list-chats"}>
                     <Header header={"PageListChat"}></Header>
                     <MainPageArea chats={this.state.chats} areaType={"pageChatList"}
-                                  handleClick={this.handleClick}></MainPageArea>
+                                  handleClick={this.handleClick}
+                                  handleClickAccountCircleIcon={this.props.handleClickAccountCircleIcon}></MainPageArea>
                     <CreateIcon id="icon-create-screen-list-chats"></CreateIcon>
                 </div>
             </div>

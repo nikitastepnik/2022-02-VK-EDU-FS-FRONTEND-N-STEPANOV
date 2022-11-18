@@ -5,6 +5,7 @@ import {insertLocalStorage} from "../../utils/insertLocalStorage";
 import {getObjectFromLocalStorage} from "../../utils/getObjectFromLocalStorage";
 import {sortChats} from "../../utils/sortChats";
 import {displayMsgTimeInPrettyWay} from "../../utils/displayMsgTimeInPrettyWay";
+import LocalSeeIcon from '@mui/icons-material/LocalSee';
 
 export function MainPageArea(props) {
 
@@ -47,13 +48,37 @@ export function MainPageArea(props) {
                          key={key}
                     >
                         <SingleChat
+                            handleClickAccountCircleIcon={props.handleClickAccountCircleIcon}
+                            page={props.areaType}
                             msgText={getObjectFromLocalStorage(chat, -1).text}
                             msgTime={displayMsgTimeInPrettyWay(getObjectFromLocalStorage(chat, -1).curTime)}
                             name={getObjectFromLocalStorage(chat, 0).Name}
-                        ></SingleChat></div>)) : null
+                        ></SingleChat></div>
+                )) : null
             }
             </div>
         )
-    }
+    } else if (props.areaType === "pageProfile") {
+        return(
+        <div className="display-page-area">
+            <div>
+            <LocalSeeIcon className="pageProfilePhoto"></LocalSeeIcon>
+            </div>
+            <div className={"page-profile-full-name"}>
+                <div className={"full-name-header"}>Full name</div>
+                <div className={"full-name-value"}>{props.profileName}</div>
+            </div>
+            <div className={"page-profile-username"}>
+                <div className={"username-header"}>Username</div>
+                <div className={"username-value"}>@user</div>
+                <div className={"username-length-limit-hint"}>Minimum length is 5 characters</div>
+            </div>
+            <div className={"page-profile-bio"}>
+            <div className={"bio-header"}>Bio</div>
+            <div className={"bio-value"}>YoY! It's me</div>
+            <div className={"bio-value-hint"}>Any details about you</div>
+            </div>
+        </div>)
+        }
 }
 
