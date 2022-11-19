@@ -9,7 +9,8 @@ export class PageProfile extends React.Component {
             <div className={"screen-chat-profile-container"}>
                 <div className={"screen-chat-profile"} id={"screen-chat-profile"}>
                     <Header header={"PageProfile"} pagePrevUrl={this.props.pagePrevUrl}></Header>
-                    <MainPageArea areaType={"pageProfile"} profileName={this.props.profileName}></MainPageArea>
+                    <MainPageArea areaType={"pageProfile"} profileName={this.props.profileName}
+                                  profileUserName={this.props.profileUserName}></MainPageArea>
                 </div>
             </div>)
     }

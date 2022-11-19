@@ -1,12 +1,6 @@
 import './App.css';
 import React from "react";
-import {
-    HashRouter as Router,
-    Routes,
-    Route,
-    Navigate
-}
-    from "react-router-dom";
+import {HashRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 
 
 import {PageChatList} from "./pages/PageChatList/PageChatList";
@@ -20,11 +14,26 @@ export class App extends React.Component {
         this.sumbitChat = this.sumbitChat.bind(this)
         this.callbackSubmitChat = this.callbackSubmitChat.bind(this)
         this.handleClickAccountCircleIcon = this.handleClickAccountCircleIcon.bind(this)
+
         this.state = {
             page: "chats",
             chatComp: "",
             profileName: null,
-            url: null
+            url: null,
+            chats: {
+                "Дженнифер": "@Jen",
+                "Никита": "@Nick",
+                "Егор": "@Egor",
+                "Марина": "@Marine",
+                "Стефан": "@Stefan",
+                "Николай": "@Nik",
+                "Таня": "@Tanya",
+                "Алла": "@All",
+                "Тамара": "@Tom",
+                "Олег": "@Oleg",
+                "Мишка": "@МMishka",
+                "Fil": "@Fil"
+            }
         }
     }
 
@@ -39,6 +48,7 @@ export class App extends React.Component {
 
         this.setState({
                 profileName: name,
+                profileUserName: this.state.chats[name],
                 url: url
             }
         )
@@ -74,9 +84,12 @@ export class App extends React.Component {
                     <main>
                         <Routes>
                             <Route path='/' element={<Navigate replace to="chats"/>}/>
-                            <Route path='profile' element={<PageProfile profileName={this.state.profileName} pagePrevUrl={this.state.url}/>}/>
+                            <Route path='profile' element={<PageProfile profileName={this.state.profileName}
+                                                                        pagePrevUrl={this.state.url}
+                                                                        profileUserName={this.state.profileUserName}/>}/>
                             <Route path='chats' element={<PageChatList sumbitChat={this.sumbitChat}
-                                                                       handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}/>}/>
+                                                                       handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}
+                                                                       chats={this.state.chats}/>}/>
                             <Route path='single-chat'
                                    element={<PageChat chatComp={this.state.chatComp} sumbitChat={this.sumbitChat}
                                                       handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}/>}/>

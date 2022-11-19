@@ -3,7 +3,7 @@ export function sortChats(items) {
     for (let elem of items) {
         let lastMsgs = new Map()
         lastMsgs.set("name", elem)
-        lastMsgs.set("time", JSON.parse(window.localStorage.getItem(elem)).at(-1).curTime)
+        lastMsgs.set("time", JSON.parse(window.localStorage.getItem(elem)).at(-1).curTimeFull)
         times.push(lastMsgs)
     }
 
