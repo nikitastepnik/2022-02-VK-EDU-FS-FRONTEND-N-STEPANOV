@@ -1,0 +1,22 @@
+.chat-area {
+  display: flex;
+  background-color: rgba(243, 243, 243);
+  height: 100%;
+  width: 400px;
+  overflow-y: scroll;
+  flex-direction: column-reverse;
+  margin-right: 0;
+}
+
+.list-chats {
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+  height: 85%;
+  width: 400px;
+}
+
+.single-chat-container {
+  display: inline-table;
+  max-height: 55px;
+}

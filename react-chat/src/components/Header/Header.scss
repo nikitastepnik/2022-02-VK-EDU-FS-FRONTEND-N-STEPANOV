@@ -1,0 +1,125 @@
+.companion-info {
+  flex-basis: 30%;
+  margin-bottom: 23px;
+  text-align: right;
+}
+
+.form-text-after {
+  font-size: 11.5px;
+  color: rgba(200, 167, 215);
+  text-align: center;
+}
+
+.form-text {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.header-frame {
+  z-index: 999;
+  font-size: 18px;
+  height: 10%;
+  width: 400px;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  background-color: rgba(131, 51, 164);
+}
+
+.header-frame-content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+#icon-search-screen-chat {
+  text-align: center;
+  flex-basis: 20%;
+}
+
+#icon-more-vert-screen-chat {
+  text-align: center;
+  flex-basis: 15%;
+}
+
+
+#icon-arrow-back-screen-chat {
+  flex-basis: 15%;
+}
+
+#icon-profile {
+  flex-basis: 20%;
+  text-align: right;
+  font-size: 50px;
+}
+
+.form-text {
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+#form-frame-content-screen-list-chats {
+  width: 100%;
+}
+
+#form-frame-screen-list-chats {
+  height: 10%;
+}
+
+@keyframes background {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 100px;
+  }
+}
+
+#form-text-screen-list-chats {
+  flex-basis: 70%;
+  margin-top: 0;
+  margin-left: 37px;
+  margin-bottom: -10px;
+  text-align: left;
+  background: linear-gradient(45deg, lightgreen, aliceblue, cornflowerblue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: background 5s linear infinite;
+  animation-delay: 1s;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+#icon-search-screen-list-chats {
+  text-align: center;
+  flex-basis: 20%;
+  margin-bottom: -10px;
+  transition-property: animation;
+  transition-delay: 2s;
+}
+
+#icon-dehaze-screen-list-chats {
+  text-align: right;
+  flex-basis: 10%;
+  margin-bottom: -10px;
+}
+
+
+#icon-search-screen-list-chats:hover {
+  font-weight: bolder;
+  animation: pulse 2s infinite;
+}

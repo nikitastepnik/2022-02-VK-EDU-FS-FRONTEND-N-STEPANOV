@@ -1,0 +1,2 @@
+export {MainPageArea} from "./MainPageArea";
+
