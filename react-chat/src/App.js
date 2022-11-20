@@ -1,8 +1,11 @@
 import './App.css';
 import React from "react";
+import {HashRouter as Router, Navigate, Route, Routes} from "react-router-dom";
+
+
 import {PageChatList} from "./pages/PageChatList/PageChatList";
 import {PageChat} from "./pages/PageChat";
-import {insertUrlToBrowserHistory} from "./utils/insertUrlToBrowserHistory";
+import {PageProfile} from "./pages/PageProfile/PageProfile";
 
 
 export class App extends React.Component {
@@ -10,19 +13,45 @@ export class App extends React.Component {
         super(props);
         this.sumbitChat = this.sumbitChat.bind(this)
         this.callbackSubmitChat = this.callbackSubmitChat.bind(this)
+        this.handleClickAccountCircleIcon = this.handleClickAccountCircleIcon.bind(this)
 
         this.state = {
             page: "chats",
-            chatComp: ""
+            chatComp: "",
+            profileName: null,
+            url: null,
+            chats: {
+                "Дженнифер": "@Jen",
+                "Никита": "@Nick",
+                "Егор": "@Egor",
+                "Марина": "@Marine",
+                "Стефан": "@Stefan",
+                "Николай": "@Nik",
+                "Таня": "@Tanya",
+                "Алла": "@All",
+                "Тамара": "@Tom",
+                "Олег": "@Oleg",
+                "Мишка": "@МMishka",
+                "Fil": "@Fil"
+            }
         }
-        insertUrlToBrowserHistory(this.state.page)
-        window.addEventListener('popstate',
-            this.callbackSubmitChat
-        )
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('popstate', this.callbackSubmitChat)
+
+    handleClickAccountCircleIcon(name, pagePrev) {
+        let url = ""
+        if (pagePrev === "PageChat") {
+            url = '/single-chat'
+        } else if (pagePrev === "pageChatList") {
+            url = '/chats'
+        }
+
+        this.setState({
+                profileName: name,
+                profileUserName: this.state.chats[name],
+                url: url
+            }
+        )
     }
 
     callbackSubmitChat() {
@@ -40,25 +69,34 @@ export class App extends React.Component {
                     chatComp: chatComp
                 }
             )
-            insertUrlToBrowserHistory("chat")
         } else {
             this.setState({
                 page: "chats",
             })
-            insertUrlToBrowserHistory("chats")
         }
     }
 
 
     render() {
         return (
-            <div>
-                {this.state.page === 'chats' && <PageChatList path="/home" sumbitChat={this.sumbitChat}>
-                </PageChatList>}
-                {this.state.page === 'chat' &&
-                    <PageChat chatComp={this.state.chatComp} sumbitChat={this.sumbitChat}>
-                    </PageChat>}
-            </div>
+            <Router>
+                <div className="App">
+                    <main>
+                        <Routes>
+                            <Route path='/' element={<Navigate replace to="chats"/>}/>
+                            <Route path='profile' element={<PageProfile profileName={this.state.profileName}
+                                                                        pagePrevUrl={this.state.url}
+                                                                        profileUserName={this.state.profileUserName}/>}/>
+                            <Route path='chats' element={<PageChatList sumbitChat={this.sumbitChat}
+                                                                       handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}
+                                                                       chats={this.state.chats}/>}/>
+                            <Route path='single-chat'
+                                   element={<PageChat chatComp={this.state.chatComp} sumbitChat={this.sumbitChat}
+                                                      handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}/>}/>
+                        </Routes>
+                    </main>
+                </div>
+            </Router>
         )
     }
 }

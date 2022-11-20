@@ -44,13 +44,8 @@
 }
 
 
-#icon-arrow-back-screen-chat {
-  flex-basis: 15%;
-}
-
 #icon-profile {
   flex-basis: 20%;
-  text-align: right;
   font-size: 50px;
 }
 
@@ -122,4 +117,42 @@
 #icon-search-screen-list-chats:hover {
   font-weight: bolder;
   animation: pulse 2s infinite;
+}
+
+.link-arrow-back {
+  text-decoration: none;
+  color: inherit;
+  flex-basis: 15%;
+}
+
+#form-text-screen-chat-profile {
+  font-weight: bolder;
+}
+
+#form-text-screen-chat-profile {
+  margin-top: 10px;
+  flex-basis: 60%;
+  text-align: left;
+  padding-left: 18px;
+}
+
+#icon-arrow-back-screen-profile-chat {
+  margin-top: 10px;
+  flex-basis: 20%;
+}
+
+.icon-done-screen-profile-chat {
+  margin-top: 10px;
+  flex-basis: 20%;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.link-profile-screen-chat {
+  flex-basis: 20%;
+  text-align: center;
+  font-size: 50px;
+  text-decoration: none;
+  color: inherit;
+  margin-top: 12.5px;
 }

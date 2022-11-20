@@ -20,3 +20,124 @@
   display: inline-table;
   max-height: 55px;
 }
+
+.display-page-area {
+  display: flex;
+  background-color: white;
+  width: 400px;
+  flex-direction: column;
+  align-items: center;
+  height: 85%;
+}
+
+.page-profile-icon {
+  margin-top: 35px;
+  border: 0.5px solid black;
+  flex-basis: 25%;
+  border-radius: 50%;
+  padding: 16px;
+  scale: 1.25;
+}
+
+.page-profile-avatar {
+  flex-basis: 25%;
+  border-radius: 50%;
+  margin-top: 35px;
+  border: 0.5px solid black;
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+}
+
+.page-profile-full-name {
+  flex-basis: 20%;
+  margin-top: 40px;
+  max-height: 50px;
+  background-color: rgb(237, 237, 237);
+  width: 90%;
+  border-bottom: 1.5px rgba(85, 85, 85, 0.55) solid;
+}
+
+.full-name-header {
+  margin-top: 5px;
+  font-size: 14px;
+  color: rgba(85, 85, 85, 0.55);
+  text-align: left;
+  margin-left: 20px;
+}
+
+.full-name-value {
+  font-size: 16px;
+  margin-top: 5px;
+  color: black;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.page-profile-username {
+  flex-basis: 20%;
+  margin-top: 35px;
+  max-height: 50px;
+  background-color: rgb(237, 237, 237);
+  width: 90%;
+  border-bottom: 1.5px rgba(85, 85, 85, 0.55) solid;
+}
+
+.username-header {
+  margin-top: 5px;
+  font-size: 14px;
+  color: rgba(85, 85, 85, 0.55);
+  text-align: left;
+  margin-left: 20px;
+}
+
+.username-value {
+  font-size: 16px;
+  margin-top: 5px;
+  color: black;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.username-length-limit-hint {
+  font-size: 12px;
+  color: rgba(85, 85, 85, 0.55);
+  margin-left: 20px;
+  margin-top: 15px;
+  text-align: left;
+  font-weight: bolder;
+}
+
+.page-profile-bio {
+  flex-basis: 40%;
+  margin-top: 47px;
+  max-height: 100px;
+  background-color: rgb(237, 237, 237);
+  width: 90%;
+  border-bottom: 1.5px rgba(85, 85, 85, 0.55) solid;
+}
+
+.bio-header {
+  margin-top: 5px;
+  font-size: 14px;
+  color: rgba(85, 85, 85, 0.55);
+  text-align: left;
+  margin-left: 20px;
+}
+
+.bio-value {
+  font-size: 16px;
+  margin-top: 5px;
+  color: black;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.bio-value-hint {
+  font-size: 12px;
+  color: rgba(85, 85, 85, 0.55);
+  margin-left: 20px;
+  margin-top: 65px;
+  text-align: left;
+  font-weight: bolder;
+}

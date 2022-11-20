@@ -37,7 +37,8 @@ export class PageChat extends React.Component {
             <div className="screen-chat" style={{display: this.state.display}}>
                 <div className="form-container">
                     <Header name={this.state.name} lastSeenTime={this.state.lastSeenTime}
-                            header={"PageChat"} submitChat={this.props.sumbitChat}></Header>
+                            header={"PageChat"} submitChat={this.props.sumbitChat}
+                            handleClickAccountCircleIcon={this.props.handleClickAccountCircleIcon}></Header>
                     <MainPageArea msgAuthor={this.state.name} msgs={this.state.msgsChat} areaType={"pageChat"}>
                     </MainPageArea>
                     <InputForm handleSubmit={this.handleSubmit} name={this.state.name}>

@@ -3,8 +3,12 @@ import {Message} from "../Message";
 import {SingleChat} from "../SingleChat";
 import {insertLocalStorage} from "../../utils/insertLocalStorage";
 import {getObjectFromLocalStorage} from "../../utils/getObjectFromLocalStorage";
+import {sortChats} from "../../utils/sortChats";
+import {displayMsgTimeInPrettyWay} from "../../utils/displayMsgTimeInPrettyWay";
+import LocalSeeIcon from '@mui/icons-material/LocalSee';
 
 export function MainPageArea(props) {
+    const avatar = false
 
     if (props.areaType === "pageChat") {
         return (
@@ -15,7 +19,7 @@ export function MainPageArea(props) {
                             key={key}
                             msgAuthor={msg.Name}
                             msgText={msg.text}
-                            msgTime={msg.curTime}
+                            msgTime={displayMsgTimeInPrettyWay(msg.curTime)}
                             msgType={msg.msgType}
                             iconType={"done"}></Message>)).reverse() : null
                 }
@@ -31,21 +35,55 @@ export function MainPageArea(props) {
             }
         }
 
+        let chats = sortChats(Object.keys(props.chats))
+        let chatsComp = []
+        for (let elem of chats) {
+            chatsComp.push(elem.get("name"))
+        }
+
         return (
             <div className={"list-chats"}>{
-                props.chats ? Object.keys(props.chats).map((chat, key) => (
+                props.chats ? chatsComp.map((chat, key) => (
                     <div className={"single-chat-container"} id={chat}
                          onClick={(event) => props.handleClick(event, chat)}
                          key={key}
                     >
                         <SingleChat
+                            handleClickAccountCircleIcon={props.handleClickAccountCircleIcon}
+                            page={props.areaType}
                             msgText={getObjectFromLocalStorage(chat, -1).text}
-                            msgTime={getObjectFromLocalStorage(chat, -1).curTime}
+                            msgTime={displayMsgTimeInPrettyWay(getObjectFromLocalStorage(chat, -1).curTime)}
                             name={getObjectFromLocalStorage(chat, 0).Name}
-                        ></SingleChat></div>)) : null
+                        ></SingleChat></div>
+                )) : null
             }
             </div>
         )
+    } else if (props.areaType === "pageProfile") {
+        return (
+            <div className="display-page-area">
+                <div>
+                    {avatar ?
+                        <img src={require('./images/god_bug.jpeg')} className="page-profile-avatar"
+                             alt="Profile Avatar"/> :
+                        <LocalSeeIcon className="page-profile-icon"></LocalSeeIcon>
+                    }
+                </div>
+                <div className={"page-profile-full-name"}>
+                    <div className={"full-name-header"}>Full name</div>
+                    <div className={"full-name-value"}>{props.profileName}</div>
+                </div>
+                <div className={"page-profile-username"}>
+                    <div className={"username-header"}>Username</div>
+                    <div className={"username-value"}>{props.profileUserName}</div>
+                    <div className={"username-length-limit-hint"}>Minimum length is 5 characters</div>
+                </div>
+                <div className={"page-profile-bio"}>
+                    <div className={"bio-header"}>Bio</div>
+                    <div className={"bio-value"}>YoY! It's me</div>
+                    <div className={"bio-value-hint"}>Any details about you</div>
+                </div>
+            </div>)
     }
 }
 
