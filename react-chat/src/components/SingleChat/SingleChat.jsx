@@ -10,9 +10,9 @@ export function SingleChat(props) {
         return (
             <div className={"single-chat"}>
                 <Link className={"link-profile"} to={"/profile"}>
-                <MailOutlineIcon id="icon-mail-screen-list-chats"
-                                 onClick={() => props.handleClickAccountCircleIcon(props.chatName, props.page)}>
-                </MailOutlineIcon>
+                    <MailOutlineIcon id="icon-mail-screen-list-chats"
+                                     onClick={() => props.handleClickAccountCircleIcon(props.chatName, props.page)}>
+                    </MailOutlineIcon>
                 </Link>
                 <Link className={"link-single-chat"} to={"/single-chat"}>
                     <div className={"border-container"}>

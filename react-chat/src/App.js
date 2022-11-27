@@ -34,7 +34,6 @@ export class App extends React.Component {
             url = '/chats'
         }
 
-        console.log(nameId)
         if (nameId === "Общий чат") {
             this.setState({
                     profileName: "Общий чат",
@@ -49,7 +48,6 @@ export class App extends React.Component {
             })
         }
     }
-
 
 
     handleSubmitChat(swap, chatComp) {
@@ -80,7 +78,7 @@ export class App extends React.Component {
                                                                         url_prev={this.state.url}
                                                                         pagePrevUrl={this.state.url}
                                                                         profileUserName={this.state.profileUserName
-                            }/>}/>
+                                                                        }/>}/>
                             <Route path='chats' element={<PageChatList handleSubmitChat={this.handleSubmitChat}
                                                                        handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}
                                                                        chats={this.state.chats}/>}/>

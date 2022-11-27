@@ -21,29 +21,13 @@ export function MainPageArea(props) {
         return () => clearInterval(getCommonMessagesTimer);
     }, []);
 
-    // let getAllChatsTimer
-    // useEffect(() => {
-    //     if (allChatsFlag) {
-    //         getAllChatsTimer =
-    //             setInterval(() => {
-    //                 fetch(`http://127.0.0.1:8000/chat/get_all_chats/`)
-    //                     .then(res => res.json())
-    //                     .then(data => {
-    //                         setChatsApi(data["items"])
-    //                     });
-    //             }, 1000)
-    //     } else {
-    //         return () => clearInterval(getAllChatsTimer);
-    //     }
-    // }, [allChatsFlag]);
-
     useEffect(() => {
-                    fetch(`http://127.0.0.1:8000/chat/get_all_chats/`)
-                        .then(res => res.json())
-                        .then(data => {
-                            setChatsApi(data["items"])
-                        });
-                }, [])
+        fetch(`http://127.0.0.1:8000/chat/get_all_chats/`)
+            .then(res => res.json())
+            .then(data => {
+                setChatsApi(data["items"])
+            });
+    }, [])
 
     if (props.areaType === "pageChat") {
         return (
@@ -80,13 +64,13 @@ export function MainPageArea(props) {
                             <div className={"single-chat-container"} id={"common-chat"}
                                  onClick={(event) => props.handleClick(event, "Общий чат")}>
                                 <SingleChat
-                                            handleClickAccountCircleIcon={props.handleClickAccountCircleIcon}
-                                            chatName={"Общий чат"}
-                                            countChatUsers={10}
-                                            page={props.areaType}
-                                            msgText={messagesCommonChat.at(-1).text}
-                                            msgAuthor={messagesCommonChat.at(-1).author}
-                                            msgTime={displayMsgTimeInPrettyWay(messagesCommonChat.at(-1).timestamp)}>
+                                    handleClickAccountCircleIcon={props.handleClickAccountCircleIcon}
+                                    chatName={"Общий чат"}
+                                    countChatUsers={10}
+                                    page={props.areaType}
+                                    msgText={messagesCommonChat.at(-1).text}
+                                    msgAuthor={messagesCommonChat.at(-1).author}
+                                    msgTime={displayMsgTimeInPrettyWay(messagesCommonChat.at(-1).timestamp)}>
                                 </SingleChat>
                             < /div>)
                         : null

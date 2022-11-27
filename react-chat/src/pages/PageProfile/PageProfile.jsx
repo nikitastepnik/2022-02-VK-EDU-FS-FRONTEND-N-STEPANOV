@@ -40,16 +40,15 @@ export class PageProfile extends React.Component {
                                       profileUserName={this.props.profileUserName}></MainPageArea>
                     </div>
                 </div>)
-        }
-        else {
-                return (
-                    <div className={"screen-chat-profile-container"}>
-                        <div className={"screen-chat-profile"} id={"screen-chat-profile"}>
-                            <Header header={"PageProfile"} pagePrevUrl={this.props.pagePrevUrl}></Header>
-                            <MainPageArea areaType={"pageProfile"} profileName={this.state.profileName}
-                                          profileUserName={this.state.profileName}></MainPageArea>
-                        </div>
-                    </div>)
+        } else {
+            return (
+                <div className={"screen-chat-profile-container"}>
+                    <div className={"screen-chat-profile"} id={"screen-chat-profile"}>
+                        <Header header={"PageProfile"} pagePrevUrl={this.props.pagePrevUrl}></Header>
+                        <MainPageArea areaType={"pageProfile"} profileName={this.state.profileName}
+                                      profileUserName={this.state.profileName}></MainPageArea>
+                    </div>
+                </div>)
 
         }
     }
