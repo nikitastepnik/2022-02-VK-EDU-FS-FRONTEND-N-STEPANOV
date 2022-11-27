@@ -12,7 +12,7 @@ export class PageChatList extends React.Component {
     }
 
     handleClick(event, chatComp) {
-        this.props.sumbitChat(true, chatComp)
+        this.props.handleSubmitChat(true, chatComp)
     }
 
 
@@ -23,7 +23,8 @@ export class PageChatList extends React.Component {
                     <Header header={"PageListChat"}></Header>
                     <MainPageArea chats={this.props.chats} areaType={"pageChatList"}
                                   handleClick={this.handleClick}
-                                  handleClickAccountCircleIcon={this.props.handleClickAccountCircleIcon}></MainPageArea>
+                                  handleClickAccountCircleIcon={this.props.handleClickAccountCircleIcon}
+                                  ></MainPageArea>
                     <CreateIcon id="icon-create-screen-list-chats"></CreateIcon>
                 </div>
             </div>

@@ -1,3 +1,5 @@
 export function displayMsgTimeInPrettyWay(msgTime) {
-    return msgTime.split(":")[0] + ":" + msgTime.split(":")[1]
+    let msgTimeUseful = msgTime.split("T")[1].split('.')[0].split(':')
+
+    return msgTimeUseful[0] + ':' + msgTimeUseful[1]
 }
