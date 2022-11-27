@@ -11,8 +11,7 @@ import {PageProfile} from "./pages/PageProfile/PageProfile";
 export class App extends React.Component {
     constructor(props) {
         super(props);
-        this.sumbitChat = this.sumbitChat.bind(this)
-        this.callbackSubmitChat = this.callbackSubmitChat.bind(this)
+        this.handleSubmitChat = this.handleSubmitChat.bind(this)
         this.handleClickAccountCircleIcon = this.handleClickAccountCircleIcon.bind(this)
 
         this.state = {
@@ -20,25 +19,14 @@ export class App extends React.Component {
             chatComp: "",
             profileName: null,
             url: null,
-            chats: {
-                "Дженнифер": "@Jen",
-                "Никита": "@Nick",
-                "Егор": "@Egor",
-                "Марина": "@Marine",
-                "Стефан": "@Stefan",
-                "Николай": "@Nik",
-                "Таня": "@Tanya",
-                "Алла": "@All",
-                "Тамара": "@Tom",
-                "Олег": "@Oleg",
-                "Мишка": "@МMishka",
-                "Fil": "@Fil"
-            }
+            user_info_url: null,
         }
     }
 
 
-    handleClickAccountCircleIcon(name, pagePrev) {
+    handleClickAccountCircleIcon(nameId, pagePrev) {
+        let user_info_url = `http://127.0.0.1:8000/user/get_info/` + nameId + '/'
+
         let url = ""
         if (pagePrev === "PageChat") {
             url = '/single-chat'
@@ -46,29 +34,32 @@ export class App extends React.Component {
             url = '/chats'
         }
 
-        this.setState({
-                profileName: name,
-                profileUserName: this.state.chats[name],
-                url: url
-            }
-        )
-    }
-
-    callbackSubmitChat() {
-        if (this.state.page === "chat") {
-            this.sumbitChat(false)
+        console.log(nameId)
+        if (nameId === "Общий чат") {
+            this.setState({
+                    profileName: "Общий чат",
+                    profileUserName: "Это общий чат, детка",
+                    url: url
+                }
+            )
         } else {
-            this.sumbitChat(true, this.state.chatComp)
+            this.setState({
+                user_info_url: user_info_url,
+                url: url
+            })
         }
     }
 
-    sumbitChat(swap, chatComp) {
+
+
+    handleSubmitChat(swap, chatComp) {
         if (swap) {
             this.setState({
                     page: "chat",
                     chatComp: chatComp
                 }
             )
+            window.localStorage.setItem("chat", chatComp)
         } else {
             this.setState({
                 page: "chats",
@@ -85,13 +76,16 @@ export class App extends React.Component {
                         <Routes>
                             <Route path='/' element={<Navigate replace to="chats"/>}/>
                             <Route path='profile' element={<PageProfile profileName={this.state.profileName}
+                                                                        user_info_url={this.state.user_info_url}
+                                                                        url_prev={this.state.url}
                                                                         pagePrevUrl={this.state.url}
-                                                                        profileUserName={this.state.profileUserName}/>}/>
-                            <Route path='chats' element={<PageChatList sumbitChat={this.sumbitChat}
+                                                                        profileUserName={this.state.profileUserName
+                            }/>}/>
+                            <Route path='chats' element={<PageChatList handleSubmitChat={this.handleSubmitChat}
                                                                        handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}
                                                                        chats={this.state.chats}/>}/>
                             <Route path='single-chat'
-                                   element={<PageChat chatComp={this.state.chatComp} sumbitChat={this.sumbitChat}
+                                   element={<PageChat chatComp={this.state.chatComp} sumbitChat={this.handleSubmitChat}
                                                       handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}/>}/>
                         </Routes>
                     </main>

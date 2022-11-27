@@ -8,7 +8,14 @@ import DoneIcon from '@mui/icons-material/Done';
 import {Link} from "react-router-dom";
 
 export function Header(props) {
-    if (props.header === "PageChat") {
+    let chatCompId
+
+    if (props.header === "PageChat" && ((props.chat === "Общий чат") || (props.chatInfo !== null))) {
+        if (props.chat !== "Общий чат") {
+            props.chatInfo.users[0] === 2 ? chatCompId = props.chatInfo.users[1] : chatCompId = props.chatInfo.users[0]
+        } else {
+            chatCompId = "Общий чат"
+        }
         return (
             <div className="header-frame">
                 <div className="header-frame-content">
@@ -18,11 +25,13 @@ export function Header(props) {
                     </Link>
                     <Link className={"link-profile-screen-chat"} to={"/profile"}>
                         <AccountCircleIcon id="icon-profile"
-                                           onClick={() => props.handleClickAccountCircleIcon(props.name, props.header)}></AccountCircleIcon>
+                                           onClick={() => props.handleClickAccountCircleIcon(chatCompId, props.header)}></AccountCircleIcon>
                     </Link>
                     <div className="companion-info">
-                        <div className="form-text" id="form-text-screen-chat">{props.name}</div>
-                        <div className="form-text-after">{props.lastSeenTime}</div>
+                        <div className="form-text"
+                             id="form-text-screen-chat">{props.chat !== "Общий чат" ? props.chatInfo.topic : props.chat}</div>
+                        {props.chat !== "Общий чат" ?
+                            <div className="form-text-after">{props.lastSeenTime}</div> : null}
                     </div>
                     <SearchIcon id="icon-search-screen-chat"></SearchIcon>
                     <MoreVertIcon id="icon-more-vert-screen-chat"></MoreVertIcon>

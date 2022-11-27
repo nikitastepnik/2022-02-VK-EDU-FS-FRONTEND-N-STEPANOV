@@ -1,64 +1,117 @@
 import './MainPageArea.scss'
 import {Message} from "../Message";
-import {SingleChat} from "../SingleChat";
-import {insertLocalStorage} from "../../utils/insertLocalStorage";
-import {getObjectFromLocalStorage} from "../../utils/getObjectFromLocalStorage";
-import {sortChats} from "../../utils/sortChats";
 import {displayMsgTimeInPrettyWay} from "../../utils/displayMsgTimeInPrettyWay";
-import LocalSeeIcon from '@mui/icons-material/LocalSee';
+import LocalSeeIcon from '@mui/icons-material/Create';
+import {useEffect, useState} from "react";
+import {SingleChat} from "../SingleChat";
+
 
 export function MainPageArea(props) {
     const avatar = false
+    const [messagesCommonChat, setMessagesCommonChat] = useState(null)
+    const [chatsApi, setChatsApi] = useState(null)
+
+    useEffect(() => {
+        const getCommonMessagesTimer =
+            setInterval(() => {
+                fetch(`https://tt-front.vercel.app/messages/`)
+                    .then(res => res.json())
+                    .then(data => setMessagesCommonChat(data));
+            }, 1000)
+        return () => clearInterval(getCommonMessagesTimer);
+    }, []);
+
+    // let getAllChatsTimer
+    // useEffect(() => {
+    //     if (allChatsFlag) {
+    //         getAllChatsTimer =
+    //             setInterval(() => {
+    //                 fetch(`http://127.0.0.1:8000/chat/get_all_chats/`)
+    //                     .then(res => res.json())
+    //                     .then(data => {
+    //                         setChatsApi(data["items"])
+    //                     });
+    //             }, 1000)
+    //     } else {
+    //         return () => clearInterval(getAllChatsTimer);
+    //     }
+    // }, [allChatsFlag]);
+
+    useEffect(() => {
+                    fetch(`http://127.0.0.1:8000/chat/get_all_chats/`)
+                        .then(res => res.json())
+                        .then(data => {
+                            setChatsApi(data["items"])
+                        });
+                }, [])
 
     if (props.areaType === "pageChat") {
         return (
             <div className="chat-area">
                 {
+                    props.chatName === "Общий чат" ?
+                        messagesCommonChat ? messagesCommonChat.map((msg, key) => (
+                            <Message
+                                key={key}
+                                msgAuthor={msg.author}
+                                msgText={msg.text}
+                                msgTime={displayMsgTimeInPrettyWay(msg.timestamp)}
+                                msgType={"message-companion"}
+                                iconType={"done"}></Message>)).reverse() : null : null
+                }
+                {
                     props.msgs ? props.msgs.map((msg, key) => (
                         <Message
                             key={key}
-                            msgAuthor={msg.Name}
-                            msgText={msg.text}
-                            msgTime={displayMsgTimeInPrettyWay(msg.curTime)}
-                            msgType={msg.msgType}
+                            msgAuthor={msg.author}
+                            msgText={msg.content}
+                            msgTime={displayMsgTimeInPrettyWay(msg.dispatch_date)}
+                            msgType={"message-companion"}
                             iconType={"done"}></Message>)).reverse() : null
                 }
             </div>
         )
     } else if (props.areaType === "pageChatList") {
-        for (let chatComp of Object.keys(props.chats)) {
-            if (!JSON.parse(window.localStorage.getItem(chatComp))) {
-                insertLocalStorage({
-                    "msgComp": chatComp, "msgType": "message-companion",
-                    "msgAuthor": chatComp
-                })
-            }
-        }
-
-        let chats = sortChats(Object.keys(props.chats))
-        let chatsComp = []
-        for (let elem of chats) {
-            chatsComp.push(elem.get("name"))
-        }
 
         return (
-            <div className={"list-chats"}>{
-                props.chats ? chatsComp.map((chat, key) => (
-                    <div className={"single-chat-container"} id={chat}
-                         onClick={(event) => props.handleClick(event, chat)}
-                         key={key}
-                    >
-                        <SingleChat
-                            handleClickAccountCircleIcon={props.handleClickAccountCircleIcon}
-                            page={props.areaType}
-                            msgText={getObjectFromLocalStorage(chat, -1).text}
-                            msgTime={displayMsgTimeInPrettyWay(getObjectFromLocalStorage(chat, -1).curTime)}
-                            name={getObjectFromLocalStorage(chat, 0).Name}
-                        ></SingleChat></div>
-                )) : null
-            }
+            <div className={"list-chats"}>
+                {
+                    messagesCommonChat ? (
+                            <div className={"single-chat-container"} id={"common-chat"}
+                                 onClick={(event) => props.handleClick(event, "Общий чат")}>
+                                <SingleChat
+                                            handleClickAccountCircleIcon={props.handleClickAccountCircleIcon}
+                                            chatName={"Общий чат"}
+                                            countChatUsers={10}
+                                            page={props.areaType}
+                                            msgText={messagesCommonChat.at(-1).text}
+                                            msgAuthor={messagesCommonChat.at(-1).author}
+                                            msgTime={displayMsgTimeInPrettyWay(messagesCommonChat.at(-1).timestamp)}>
+                                </SingleChat>
+                            < /div>)
+                        : null
+                }
+                {
+                    chatsApi ? chatsApi.map((chat) => (
+                        <div className={"single-chat-container"} id={chat.id}
+                             onClick={(event) => props.handleClick(event, chat.id)}
+                             key={chat.id}
+                        >
+                            <SingleChat
+                                handleClickAccountCircleIcon={props.handleClickAccountCircleIcon}
+                                countChatUsers={chat.users.length}
+                                chatName={chat.topic}
+                                msgAuthor={chat["last_message"].id}
+                                page={props.areaType}
+                                chatUsers={chat.users}
+                                msgText={chat["last_message"].content}
+                                msgTime={displayMsgTimeInPrettyWay(chat["last_message"].dispatch_date)}
+                            ></SingleChat></div>
+                    )) : null
+                }
             </div>
         )
+
     } else if (props.areaType === "pageProfile") {
         return (
             <div className="display-page-area">

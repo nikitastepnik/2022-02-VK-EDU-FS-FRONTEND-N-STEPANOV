@@ -3,7 +3,6 @@ import React from 'react';
 import './PageChat.scss'
 import {Header} from "../../components/Header";
 import {MainPageArea} from "../../components/MainPageArea";
-import {insertLocalStorage} from "../../utils/insertLocalStorage";
 import {InputForm} from "../../components/InputForm";
 
 export class PageChat extends React.Component {
@@ -12,36 +11,90 @@ export class PageChat extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.state = {
             display: "flex",
-            name: this.props.chatComp,
-            lastSeenTime: "2 часа назад",
-            msgsChat: JSON.parse(window.localStorage.getItem(this.props.chatComp)),
+            chat: window.localStorage.getItem("chat"),
+            messages: [],
+            chatInfo: null,
+            lastSeenTime: "last seen recently",
         }
+
+    }
+
+    componentDidMount = () => {
+        this.getMessages()
+        this.getChatInfo()
+
+    }
+
+    componentDidUpdate = () => {
+        this.getMessages()
+    }
+
+    getMessages = () => {
+        fetch(`http://127.0.0.1:8000/message/get_list_for_chat/?chat_id=` + this.state.chat)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    messages: data.messages
+                })
+                ;
+            });
+    }
+
+    getChatInfo = () => {
+        fetch(`http://127.0.0.1:8000/chat/get/` + this.props.chatComp)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    chatInfo: data["chat_info"]
+                })
+            })
+
     }
 
     handleSubmit(event) {
-        if (event.target[0].value) {
-            insertLocalStorage({"msgComp": this.state.name, "msgText": event.target[0].value})
+        if (this.state.chat === "Общий чат") {
+            if (event.target[0].value) {
+                fetch("https://tt-front.vercel.app/message", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        author: "Никита Степанов",
+                        text: event.target[0].value
+                    })
+                })
+            }
+        } else {
+            let formDataBody = new FormData()
+            formDataBody.append("chat_id", this.state.chat)
+            formDataBody.append("author_id", "2")
+            formDataBody.append("content", event.target[0].value)
+
+            if (event.target[0].value) {
+                fetch("http://127.0.0.1:8000/message/create/", {
+                    method: "POST",
+
+                    body: formDataBody
+                })
+            }
         }
+
         event.preventDefault()
 
-        this.setState({
-            msgsChat: JSON.parse(window.localStorage.getItem(this.state.name)),
-            counter: this.state.counter + 1,
-        })
 
     }
-
 
     render() {
         return (
             <div className="screen-chat" style={{display: this.state.display}}>
                 <div className="form-container">
-                    <Header name={this.state.name} lastSeenTime={this.state.lastSeenTime}
-                            header={"PageChat"} submitChat={this.props.sumbitChat}
+                    <Header chat={this.state.chat} chatInfo={this.state.chatInfo} lastSeenTime={this.state.lastSeenTime}
+                            header={"PageChat"}
                             handleClickAccountCircleIcon={this.props.handleClickAccountCircleIcon}></Header>
-                    <MainPageArea msgAuthor={this.state.name} msgs={this.state.msgsChat} areaType={"pageChat"}>
+                    <MainPageArea chatName={this.state.chat} msgs={this.state.messages} areaType={"pageChat"}>
                     </MainPageArea>
-                    <InputForm handleSubmit={this.handleSubmit} name={this.state.name}>
+                    <InputForm handleSubmit={this.handleSubmit} name={this.state.chat}>
                     </InputForm>
                 </div>
             </div>
