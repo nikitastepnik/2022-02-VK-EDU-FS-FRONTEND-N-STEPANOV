@@ -1,6 +1,8 @@
 import React from 'react';
+import {Centrifuge} from 'centrifuge';
 
 import './PageChat.scss'
+
 import {Header} from "../../components/Header";
 import {MainPageArea} from "../../components/MainPageArea";
 import {InputForm} from "../../components/InputForm";
@@ -9,28 +11,41 @@ export class PageChat extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.publishToChanel = this.publishToChanel.bind(this)
         this.state = {
             display: "flex",
             chat: window.localStorage.getItem("chat"),
             messages: [],
             chatInfo: null,
             lastSeenTime: "last seen recently",
+            centrifuge: new Centrifuge('ws://localhost:8000/connection/websocket'),
+            chanel: 'chat.id ' + window.localStorage.getItem("chat")
         }
 
+
     }
+
 
     componentDidMount = () => {
         this.getMessages()
         this.getChatInfo()
-
+        this.publishToChanel()
     }
 
-    componentDidUpdate = () => {
-        this.getMessages()
+
+    publishToChanel = () => {
+        let sub = this.state.centrifuge.newSubscription(this.state.chanel)
+        sub.on('publication', (messages) => {
+            this.setState({
+                messages: messages.data
+            })
+        });
+        sub.subscribe();
+        this.state.centrifuge.connect();
     }
 
     getMessages = () => {
-        fetch(`http://127.0.0.1:8000/message/get_list_for_chat/?chat_id=` + this.state.chat)
+        fetch(`http://127.0.0.1:9000/message/get_list_for_chat/?chat_id=` + this.state.chat)
             .then(res => res.json())
             .then(data => {
                 this.setState({
@@ -41,7 +56,7 @@ export class PageChat extends React.Component {
     }
 
     getChatInfo = () => {
-        fetch(`http://127.0.0.1:8000/chat/get/` + this.props.chatComp)
+        fetch(`http://127.0.0.1:9000/chat/get/` + this.props.chatComp)
             .then(res => res.json())
             .then(data => {
                 this.setState({
@@ -72,7 +87,7 @@ export class PageChat extends React.Component {
             formDataBody.append("content", event.target[0].value)
 
             if (event.target[0].value) {
-                fetch("http://127.0.0.1:8000/message/create/", {
+                fetch("http://127.0.0.1:9000/message/create/", {
                     method: "POST",
 
                     body: formDataBody

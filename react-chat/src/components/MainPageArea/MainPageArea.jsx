@@ -22,7 +22,7 @@ export function MainPageArea(props) {
     }, []);
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/chat/get_all_chats/`)
+        fetch(`http://127.0.0.1:9000/chat/get_all_chats/`)
             .then(res => res.json())
             .then(data => {
                 setChatsApi(data["items"])
