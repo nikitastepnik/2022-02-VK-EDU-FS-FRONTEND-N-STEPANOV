@@ -1,12 +1,12 @@
 import './App.css';
 import React from "react";
-import {HashRouter as Router, Navigate, Route, Routes} from "react-router-dom";
+import {HashRouter as Router, Route, Routes} from "react-router-dom";
 
 
 import {PageChatList} from "./pages/PageChatList/PageChatList";
 import {PageChat} from "./pages/PageChat";
 import {PageProfile} from "./pages/PageProfile/PageProfile";
-
+import {PageLogin} from "./pages/PageLogin"
 
 export class App extends React.Component {
     constructor(props) {
@@ -72,7 +72,7 @@ export class App extends React.Component {
                 <div className="App">
                     <main>
                         <Routes>
-                            <Route path='/' element={<Navigate replace to="chats"/>}/>
+                            <Route path='/' element={<PageLogin/>}/>
                             <Route path='profile' element={<PageProfile profileName={this.state.profileName}
                                                                         user_info_url={this.state.user_info_url}
                                                                         url_prev={this.state.url}

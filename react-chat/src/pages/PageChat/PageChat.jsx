@@ -25,7 +25,6 @@ export class PageChat extends React.Component {
 
     }
 
-
     componentDidMount = () => {
         this.getMessages()
         this.getChatInfo()
@@ -72,7 +71,7 @@ export class PageChat extends React.Component {
                 fetch("https://tt-front.vercel.app/message", {
                     method: "POST",
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         author: "Никита Степанов",
@@ -87,9 +86,16 @@ export class PageChat extends React.Component {
             formDataBody.append("content", event.target[0].value)
 
             if (event.target[0].value) {
+                let csrfToken
+                if (document.cookie) {
+                    csrfToken = document.cookie.match(/CSRF-TOKEN=([\w-]+)/)[0]
+                }
+
                 fetch("http://127.0.0.1:9000/message/create/", {
                     method: "POST",
-
+                    headers: {
+                        'X-XSRF-TOKEN': csrfToken
+                    },
                     body: formDataBody
                 })
             }

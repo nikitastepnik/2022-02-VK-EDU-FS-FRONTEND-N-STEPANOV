@@ -11,6 +11,7 @@ export class PageChatList extends React.Component {
         this.handleClick = this.handleClick.bind(this)
     }
 
+
     handleClick(event, chatComp) {
         this.props.handleSubmitChat(true, chatComp)
     }
