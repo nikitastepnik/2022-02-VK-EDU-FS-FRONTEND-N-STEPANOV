@@ -6,6 +6,7 @@ import './PageChat.scss'
 import {Header} from "../../components/Header";
 import {MainPageArea} from "../../components/MainPageArea";
 import {InputForm} from "../../components/InputForm";
+import {parseCsrfTokenIfExist} from "../../utils/parseCsrfTokenIfExist";
 
 export class PageChat extends React.Component {
     constructor(props) {
@@ -86,10 +87,7 @@ export class PageChat extends React.Component {
             formDataBody.append("content", event.target[0].value)
 
             if (event.target[0].value) {
-                let csrfToken
-                if (document.cookie) {
-                    csrfToken = document.cookie.match(/CSRF-TOKEN=([\w-]+)/)[0]
-                }
+                let csrfToken = parseCsrfTokenIfExist()
 
                 fetch("http://127.0.0.1:9000/message/create/", {
                     method: "POST",

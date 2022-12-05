@@ -16,6 +16,9 @@ export class PageChatList extends React.Component {
         this.props.handleSubmitChat(true, chatComp)
     }
 
+    componentDidMount() {
+        this.state.props.handleUserLoginSuccess(true)
+    }
 
     render() {
         return (

@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import {HashRouter as Router, Route, Routes} from "react-router-dom";
+import {HashRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 
 
 import {PageChatList} from "./pages/PageChatList/PageChatList";
@@ -13,14 +13,21 @@ export class App extends React.Component {
         super(props);
         this.handleSubmitChat = this.handleSubmitChat.bind(this)
         this.handleClickAccountCircleIcon = this.handleClickAccountCircleIcon.bind(this)
-
+        this.handleUserLoginSuccess = this.handleUserLoginSuccess.bind(this)
         this.state = {
             page: "chats",
             chatComp: "",
             profileName: null,
             url: null,
             user_info_url: null,
+            is_user_loggined: false,
         }
+    }
+
+    handleUserLoginSuccess(bool_param) {
+        this.setState({
+            is_user_loggined: bool_param
+        })
     }
 
 
@@ -72,25 +79,35 @@ export class App extends React.Component {
                 <div className="App">
                     <main>
                         <Routes>
-                            <Route path='/' element={<PageLogin/>}/>
-                            <Route path='profile' element={<PageProfile profileName={this.state.profileName}
-                                                                        user_info_url={this.state.user_info_url}
-                                                                        url_prev={this.state.url}
-                                                                        pagePrevUrl={this.state.url}
-                                                                        profileUserName={this.state.profileUserName
-                                                                        }/>}/>
-                            <Route path='chats' element={<PageChatList handleSubmitChat={this.handleSubmitChat}
-                                                                       handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}
-                                                                       chats={this.state.chats}/>}/>
-                            <Route path='single-chat'
-                                   element={<PageChat chatComp={this.state.chatComp} sumbitChat={this.handleSubmitChat}
-                                                      handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}/>}/>
+                            <Route path='/'
+                                   element={<PageLogin handleUserLoginSuccess={this.handleUserLoginSuccess}/>}/>
+                            {this.state.is_user_loggined ?
+                                <Route path='profile' element={<PageProfile profileName={this.state.profileName}
+                                                                            user_info_url={this.state.user_info_url}
+                                                                            url_prev={this.state.url}
+                                                                            pagePrevUrl={this.state.url}
+                                                                            profileUserName={this.state.profileUserName
+                                                                            }/>}/> :
+                                <Route path='profile' element={<Navigate replace to="/"/>}/>}
+                            {this.state.is_user_loggined ?
+                                <Route path='chats' element={<PageChatList handleSubmitChat={this.handleSubmitChat}
+                                                                           handleUserLoginSuccess={this.handleUserLoginSuccess}
+                                                                           handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}
+                                                                           chats={this.state.chats}/>}/> :
+                                <Route path='chats' element={<Navigate replace to="/"/>}/>}
+                            {this.state.is_user_loggined ?
+                                <Route path='single-chat' element={<PageChat chatComp={this.state.chatComp}
+                                                                             sumbitChat={this.handleSubmitChat}
+                                                                             handleClickAccountCircleIcon={this.handleClickAccountCircleIcon}/>}/> :
+                                <Route path='single-chat' element={<Navigate replace to="/"/>}/>}
                         </Routes>
                     </main>
                 </div>
             </Router>
         )
     }
+
+
 }
 
 export default App;

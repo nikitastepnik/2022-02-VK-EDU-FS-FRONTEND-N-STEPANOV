@@ -2,6 +2,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import './GoogleOAuth2Button.scss'
 
 export function GoogleOAuth2Button() {
+
     return (
         <div className={"OAuth2Button"} id={"GoogleOAuth2"}>
             <div className={"google-icon-container"}>
