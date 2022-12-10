@@ -11,16 +11,16 @@ export class PageChatList extends React.Component {
         this.handleClick = this.handleClick.bind(this)
     }
 
+
     handleClick(event, chatComp) {
         this.props.handleSubmitChat(true, chatComp)
     }
-
 
     render() {
         return (
             <div className={"screen-list-chats-container"}>
                 <div className={"screen-list-chats"} id={"screen-list-chats"}>
-                    <Header header={"PageListChat"}></Header>
+                    <Header header={"PageListChat"} handleClickAccountCircleIcon={this.props.handleClickAccountCircleIcon}></Header>
                     <MainPageArea chats={this.props.chats} areaType={"pageChatList"}
                                   handleClick={this.handleClick}
                                   handleClickAccountCircleIcon={this.props.handleClickAccountCircleIcon}

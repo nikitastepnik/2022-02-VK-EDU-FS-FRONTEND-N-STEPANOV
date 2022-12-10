@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://nikitastepnik.github.io/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV",
   "private": true,
-  "proxy": "http://127.0.0.1:8000/",
+  "proxy": "http://127.0.0.1:9000/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

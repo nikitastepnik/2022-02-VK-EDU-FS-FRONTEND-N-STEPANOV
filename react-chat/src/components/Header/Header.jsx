@@ -6,6 +6,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import DoneIcon from '@mui/icons-material/Done';
 import {Link} from "react-router-dom";
+import {parseCsrfTokenIfExist} from "../../utils/parseCsrfTokenIfExist";
 
 export function Header(props) {
     let chatCompId
@@ -42,7 +43,10 @@ export function Header(props) {
         return (
             <div className="header-frame">
                 <div className="header-frame-content">
-                    <DehazeIcon id="icon-dehaze-screen-list-chats"></DehazeIcon>
+                    <Link className={"link-cur-user-profile"} to={"/profile"}>
+                    <DehazeIcon id="icon-dehaze-screen-list-chats" onClick={() =>
+                        props.handleClickAccountCircleIcon(parseCsrfTokenIfExist(), "pageChatList")}></DehazeIcon>
+                    </Link>
                     <div className="form-text" id="form-text-screen-list-chats">Messenger</div>
                     <SearchIcon id="icon-search-screen-list-chats"></SearchIcon>
                 </div>
@@ -56,8 +60,11 @@ export function Header(props) {
                         <ArrowBackIcon id="icon-arrow-back-screen-profile-chat">
                         </ArrowBackIcon>
                     </Link>
-                    <div className="form-text" id="form-text-screen-chat-profile">Edit Profile</div>
-                    <DoneIcon className="icon-done-screen-profile-chat"></DoneIcon>
+                    {props.display_cur_user_account ? <div className="form-text" id="form-text-screen-chat-profile">Edit Profile</div>
+                    : (props.typeEntity ? <div className="form-text" id="form-text-screen-chat-profile">User Info</div>
+                        : <div className="form-text" id="form-text-screen-chat-profile">Chat Info</div>)}
+                    {props.display_cur_user_account ? <DoneIcon className="icon-done-screen-profile-chat"></DoneIcon>
+                        : null}
                 </div>
             </div>
         )

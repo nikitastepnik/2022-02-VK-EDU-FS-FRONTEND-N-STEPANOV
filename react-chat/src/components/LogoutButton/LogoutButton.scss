@@ -1,0 +1,24 @@
+.logout-button-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-items: center;
+  margin-top: 125px;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: rgba(131, 51, 164);
+  height: 40px;
+  width: 75px;
+}
+
+.logout-button-link {
+  color: white;
+  position: absolute;
+  font-size: 18px;
+  margin-top: 9px;
+  font-weight: bolder;
+  text-align: center;
+  text-decoration: none;
+}
+

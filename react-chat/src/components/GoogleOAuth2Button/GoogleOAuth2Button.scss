@@ -1,0 +1,45 @@
+#GoogleOAuth2 {
+  display: flex;
+  height: 60px;
+  margin-left: 45px;
+  margin-right: 45px;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.google-icon-container {
+  background-color: rgb(182, 62, 48);
+  width: 20%;
+  height: 100%;
+  font-size: 40px;
+}
+
+.google-icon {
+  margin-top: 17px;
+  color: white;
+}
+
+.text-google-auth {
+  height: 100%;
+  width: 80%;
+  background-color: rgb(223, 81, 64);
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  position: relative;
+}
+
+.google-oauth2-link {
+  position: absolute;
+  text-decoration: none;
+  color: inherit;
+  top: 17px;
+  left: 38px;
+  right: 38px;
+}
+
+.button-container {
+  border-radius: 10px;
+}
