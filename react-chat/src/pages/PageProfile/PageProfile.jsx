@@ -14,11 +14,12 @@ export class PageProfile extends React.Component {
 
 
     componentDidMount = () => {
-        this.getUserInfo()
+        console.log(this.props.display_cur_user_account)
+        this.getInfoUserCompanion()
     }
 
 
-    getUserInfo = () => {
+    getInfoUserCompanion = () => {
         fetch(this.props.user_info_url)
             .then(res => res.json())
             .then(data => {
@@ -31,11 +32,13 @@ export class PageProfile extends React.Component {
 
 
     render() {
-        if (this.props.user_info_url === null) {
+        if (this.props.user_info_url === "Chat") {
             return (
                 <div className={"screen-chat-profile-container"}>
                     <div className={"screen-chat-profile"} id={"screen-chat-profile"}>
-                        <Header header={"PageProfile"} pagePrevUrl={this.props.pagePrevUrl}></Header>
+                        <Header display_cur_user_account={this.props.display_cur_user_account} header={"PageProfile"} pagePrevUrl={this.props.pagePrevUrl}
+                                typeEntity={false}
+                        ></Header>
                         <MainPageArea areaType={"pageProfile"} profileName={this.props.profileName}
                                       profileUserName={this.props.profileUserName}></MainPageArea>
                     </div>
@@ -44,8 +47,10 @@ export class PageProfile extends React.Component {
             return (
                 <div className={"screen-chat-profile-container"}>
                     <div className={"screen-chat-profile"} id={"screen-chat-profile"}>
-                        <Header header={"PageProfile"} pagePrevUrl={this.props.pagePrevUrl}></Header>
-                        <MainPageArea areaType={"pageProfile"} profileName={this.state.profileName}
+                        <Header display_cur_user_account={this.props.display_cur_user_account} header={"PageProfile"}
+                                pagePrevUrl={this.props.pagePrevUrl} typeEntity={true}></Header>
+                        <MainPageArea display_cur_user_account={this.props.display_cur_user_account}
+                                      areaType={"pageProfile"} profileName={this.state.profileName}
                                       profileUserName={this.state.profileName}></MainPageArea>
                     </div>
                 </div>)

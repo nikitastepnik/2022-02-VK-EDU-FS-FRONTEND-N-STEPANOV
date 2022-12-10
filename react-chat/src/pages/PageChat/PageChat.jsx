@@ -87,7 +87,7 @@ export class PageChat extends React.Component {
             formDataBody.append("content", event.target[0].value)
 
             if (event.target[0].value) {
-                let csrfToken = parseCsrfTokenIfExist()
+                let csrfToken = parseCsrfTokenIfExist().split("=")[1]
 
                 fetch("http://127.0.0.1:9000/message/create/", {
                     method: "POST",

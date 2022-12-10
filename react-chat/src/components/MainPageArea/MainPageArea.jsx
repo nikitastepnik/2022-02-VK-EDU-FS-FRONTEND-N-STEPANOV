@@ -1,9 +1,10 @@
 import './MainPageArea.scss'
 import {Message} from "../Message";
 import {displayMsgTimeInPrettyWay} from "../../utils/displayMsgTimeInPrettyWay";
-import LocalSeeIcon from '@mui/icons-material/Create';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import {useEffect, useState} from "react";
 import {SingleChat} from "../SingleChat";
+import {LogoutButton} from "../LogoutButton";
 
 
 export function MainPageArea(props) {
@@ -100,11 +101,7 @@ export function MainPageArea(props) {
         return (
             <div className="display-page-area">
                 <div>
-                    {avatar ?
-                        <img src={require('./images/god_bug.jpeg')} className="page-profile-avatar"
-                             alt="Profile Avatar"/> :
-                        <LocalSeeIcon className="page-profile-icon"></LocalSeeIcon>
-                    }
+                    <CameraAltIcon className="page-profile-icon"></CameraAltIcon>
                 </div>
                 <div className={"page-profile-full-name"}>
                     <div className={"full-name-header"}>Full name</div>
@@ -113,13 +110,18 @@ export function MainPageArea(props) {
                 <div className={"page-profile-username"}>
                     <div className={"username-header"}>Username</div>
                     <div className={"username-value"}>{props.profileUserName}</div>
-                    <div className={"username-length-limit-hint"}>Minimum length is 5 characters</div>
+                    {props.display_cur_user_account ?
+                        <div className={"username-length-limit-hint"}>Minimum length is 5 characters</div> :
+                        null}
                 </div>
                 <div className={"page-profile-bio"}>
                     <div className={"bio-header"}>Bio</div>
                     <div className={"bio-value"}>YoY! It's me</div>
-                    <div className={"bio-value-hint"}>Any details about you</div>
+                    {props.display_cur_user_account ? <div className={"bio-value-hint"}>Any details about you</div> :
+                        null}
                 </div>
+                {props.display_cur_user_account ? <LogoutButton></LogoutButton> :
+                    null}
             </div>)
     }
 }
