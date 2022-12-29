@@ -1,0 +1,19 @@
+.text-area-block-container {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: 200px;
+  border: #282c34;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.form {
+  width: 100%;
+  height: 100%;
+}
+
+.form-input {
+  width: 100%;
+  height: 80%;
+}
