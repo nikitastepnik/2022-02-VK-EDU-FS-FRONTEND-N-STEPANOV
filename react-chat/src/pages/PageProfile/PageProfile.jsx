@@ -14,7 +14,6 @@ export class PageProfile extends React.Component {
 
 
     componentDidMount = () => {
-        console.log(this.props.display_cur_user_account)
         this.getInfoUserCompanion()
     }
 
