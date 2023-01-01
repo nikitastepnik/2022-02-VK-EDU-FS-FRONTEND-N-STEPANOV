@@ -14,13 +14,14 @@ export function HeaderTextArea(props) {
             <LanguageButton language={"German"} half={"origin language"}
                             changeLanguage={props.changeLanguage} origin={props.origin} target={props.target}></LanguageButton>
             <ExpandMoreIcon className={"arrow-down"}></ExpandMoreIcon>
-            <SyncAltIcon className={"arrow-revert"}></SyncAltIcon>
+            <SyncAltIcon className={"arrow-revert"} onClick={() => props.swapLanguages()}></SyncAltIcon>
             <LanguageButton language={"Russian"} half={"target language"}
                             changeLanguage={props.changeLanguage} origin={props.origin} target={props.target}></LanguageButton>
             <LanguageButton language={"English"} half={"target language"}
                             changeLanguage={props.changeLanguage} origin={props.origin} target={props.target}></LanguageButton>
             <LanguageButton language={"Spanish"} half={"target language"}
                             changeLanguage={props.changeLanguage} origin={props.origin} target={props.target}></LanguageButton>
+            <ExpandMoreIcon className={"arrow-down"}></ExpandMoreIcon>
         </div>
     )
 }

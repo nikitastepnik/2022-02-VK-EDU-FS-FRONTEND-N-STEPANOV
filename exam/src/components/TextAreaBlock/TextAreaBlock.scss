@@ -1,6 +1,8 @@
 .summary-container {
   display: flex;
+  position: absolute;
   overflow: hidden;
+  background-color: white;
   flex-direction: column;
   justify-content: flex-end;
   border: 0.5px solid black;
@@ -51,9 +53,34 @@ input{
 
 #second-container {
   border-left:  0.5px solid black;
+  cursor: pointer;
 }
 
 input{
   padding: 0 9px;
 }
 
+input::placeholder {
+  color: gray;
+}
+
+#output-res-exists {
+  padding: 0 9px;
+  color: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+#output-res-non-exists {
+  padding: 0 9px;
+  color: gray;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.placeholder-exists-value {
+  color: black;
+}

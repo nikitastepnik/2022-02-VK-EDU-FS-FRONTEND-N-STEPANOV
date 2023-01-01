@@ -5,4 +5,26 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+}
+
+.history-container {
+    width: 80px;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.history-text {
+    color: gray;
+    margin-bottom: -30px;
+}
+
+.history-icon {
+    color: gray;
+    position: absolute;
+    transform: scale(2);
 }

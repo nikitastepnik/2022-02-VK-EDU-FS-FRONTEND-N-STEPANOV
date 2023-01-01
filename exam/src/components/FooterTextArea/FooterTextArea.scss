@@ -1,6 +1,7 @@
 .microphone {
   color: rgb(96, 93, 103);
-  flex-basis: 10%;
+  flex-basis: 15%;
+  text-align: right;
 }
 
 .footer-original-language {
@@ -13,5 +14,19 @@
 
 
 .keyboard {
+  margin-left: 10px;
+  color: rgb(96, 93, 103);
+}
+
+.sum-container {
+  display: flex;
+  flex-basis: 80%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.arrow-down {
+  font-size: 4px;
+  margin-bottom: 8px;
   color: rgb(96, 93, 103);
 }
