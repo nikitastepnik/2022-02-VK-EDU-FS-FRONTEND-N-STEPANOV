@@ -1,8 +1,7 @@
+import {insertLocalStorageHistoryValue} from "./insertLocalStorageHistoryValue";
+
 export function insertRowToHistory(origin, target, origin_value, target_value) {
-    let historyTranslations = JSON.parse(window.localStorage.getItem("history"))
-    if (!historyTranslations) {
-        historyTranslations = [];
-    }
+    let historyTranslations = insertLocalStorageHistoryValue()
 
     historyTranslations.push({
         "origin": origin, "target": target,

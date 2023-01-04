@@ -5,11 +5,6 @@ import {TranslatePage} from "./pages/TranslatePage";
 import {HistoryPage} from "./pages/HistoryPage"
 
 export class App extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         if (!window.localStorage.getItem("origin language")) {
             window.localStorage.setItem("origin language", "English")
@@ -25,7 +20,7 @@ export class App extends React.Component {
                 <div className="App">
                     <main>
                         <Routes>
-                            <Route path='' element={<Navigate to="translate"/>}/>
+                            <Route path='*' element={<Navigate to="translate"/>}/>
                             <Route path={"translate"} element={<TranslatePage></TranslatePage>}></Route>
                             <Route path={"history"} element={<HistoryPage></HistoryPage>}></Route>
                         </Routes>

@@ -140,7 +140,7 @@ export class TranslatePage extends React.Component {
 
     render() {
         return (
-            <div className={"area-page-container"}>
+            <div className={"area-translate-page-container"}>
                 <Title type={"translate-header"}></Title>
                 <TextAreaBlock translateMessage={this.translateMessage} changeLanguage={this.changeLanguage}
                                target={this.state.target}

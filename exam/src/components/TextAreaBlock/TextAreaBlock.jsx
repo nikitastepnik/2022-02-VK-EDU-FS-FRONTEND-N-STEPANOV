@@ -14,7 +14,7 @@ export function TextAreaBlock(props) {
         if (props.original_value) {
             updateLenInputVal(props.original_value.length)
         }
-    }, [])
+    }, [props.original_value])
 
     return (
         <div className={"summary-container"}>
@@ -26,12 +26,16 @@ export function TextAreaBlock(props) {
                         props.translateMessage(event, props.target)
                     }>
                         <input className="form-input" name="message-text"
-                               value={props.swap ? props.original_value : inputVal} type="text"
+                               value={props.swap ? (props.original_value ? props.original_value :
+                                       window.localStorage.getItem("original value"))
+                                   : inputVal}
+                               type="text"
                                onChange={(event) => {
                                    props.changeSwapStatus()
                                    updateInputVal(event.target.value)
                                    props.checkInputLen(event.target.value.length)
                                    window.localStorage.setItem("length_input_value", event.target.value.length)
+                                   window.localStorage.setItem("original value", event.target.value)
                                    updateLenInputVal(event.target.value.length)
                                }
                                }

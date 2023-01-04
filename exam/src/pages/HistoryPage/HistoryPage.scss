@@ -1,4 +1,4 @@
-.area-page-container {
+.area-history-page-container {
   width: 100vw;
   height: 100vh;
   flex-direction: column;
@@ -8,3 +8,10 @@
   background-color: rgb(255, 255, 255);
 }
 
+
+.summary-container-history-rows {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: scroll;
+}
