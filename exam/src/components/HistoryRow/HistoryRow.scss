@@ -1,0 +1,11 @@
+.container-history-row {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.container-history-row:hover {
+  background-color: rgba(245, 246, 247);
+}

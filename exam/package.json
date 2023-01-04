@@ -2,6 +2,7 @@
   "name": "exam",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://nikitastepnik.github.io/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

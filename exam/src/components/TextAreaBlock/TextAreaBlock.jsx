@@ -4,12 +4,17 @@ import {FooterTextArea} from "../FooterTextArea";
 import {useEffect, useState} from "react";
 
 export function TextAreaBlock(props) {
-    const [inputVal, updateInputVal] = useState(props.original_value)
-    const [lenInputVal, updateLenInputVal] = useState(window.localStorage.getItem("length_input_value"))
+    const orig_val = props.original_value ? props.original_value : ""
+    const len_input_initial = window.localStorage.getItem("length_input_value") ? window.localStorage.getItem("length_input_value")
+        : 0
+    const [inputVal, updateInputVal] = useState(orig_val)
+    const [lenInputVal, updateLenInputVal] = useState(len_input_initial)
 
     useEffect(() => {
-        props.changeSwapStatus()
-    }, [props.swap])
+        if (props.original_value) {
+            updateLenInputVal(props.original_value.length)
+        }
+    }, [])
 
     return (
         <div className={"summary-container"}>
@@ -18,16 +23,18 @@ export function TextAreaBlock(props) {
             <div className={"blocks-container"}>
                 <div className={"translate-block-container"} id={"first-container"}>
                     <form className="translate-form" action="/" onSubmit={(event) =>
-                        props.translateMessage(event)
+                        props.translateMessage(event, props.target)
                     }>
                         <input className="form-input" name="message-text"
-                            value={props.swap ? props.original_value : inputVal} type="text"
+                               value={props.swap ? props.original_value : inputVal} type="text"
                                onChange={(event) => {
+                                   props.changeSwapStatus()
                                    updateInputVal(event.target.value)
                                    props.checkInputLen(event.target.value.length)
                                    window.localStorage.setItem("length_input_value", event.target.value.length)
                                    updateLenInputVal(event.target.value.length)
-                               }}
+                               }
+                               }
                         />
 
                     </form>

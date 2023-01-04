@@ -7,7 +7,7 @@
   justify-content: flex-end;
   border: 0.5px solid black;
   border-radius: 10px;
-  width: 750px;
+  width: 950px;
   height: 175px;
 }
 
@@ -47,16 +47,16 @@ button:focus {
 }
 
 form,
-input{
+input {
   border: 0;
 }
 
 #second-container {
-  border-left:  0.5px solid black;
+  border-left: 0.5px solid black;
   cursor: pointer;
 }
 
-input{
+input {
   padding: 0 9px;
 }
 

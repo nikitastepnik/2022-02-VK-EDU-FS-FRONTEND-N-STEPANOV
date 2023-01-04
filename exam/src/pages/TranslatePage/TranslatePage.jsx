@@ -3,10 +3,11 @@ import React from "react";
 import {TextAreaBlock} from "../../components/TextAreaBlock/TextAreaBlock";
 import HistoryIcon from "@mui/icons-material/History";
 import {Title} from "../../components/Title";
+import {Link} from "react-router-dom";
+import {insertRowToHistory} from "../../utils/insertRowToHistory";
 
 const languagesCodes = {
     "Russian": "ru",
-    "Spanish": "es",
     "German": "de",
     "English": "en"
 }
@@ -45,13 +46,19 @@ export class TranslatePage extends React.Component {
                     origin: language
                 }
             )
+            window.localStorage.setItem("origin language", language)
         } else {
+            if (language === this.state.origin) {
+                return
+            }
             this.setState(
                 {
                     target: language,
                     translate_stub: translationsStub[language]
                 }
             )
+            window.localStorage.setItem("target language", language)
+            this.translateMessage(null, language)
         }
 
     }
@@ -67,15 +74,18 @@ export class TranslatePage extends React.Component {
         }
     }
 
-    translateMessage(event) {
-        event.preventDefault()
-        if (event.target[0].value) {
-            window.localStorage.setItem("original value", event.target[0].value)
+    translateMessage(event, language = "English") {
+        if (event) {
+            event.preventDefault()
+        }
+        if (event || this.state.original_value) {
+            let translate_value = event ? event.target[0].value : this.state.original_value
+            window.localStorage.setItem("original value", translate_value)
             this.setState({
-                origin_value: event.target[0].value,
+                original_value: translate_value,
                 translate_value: "..."
             })
-            let body = [{"Text": event.target[0].value}]
+            let body = [{"Text": translate_value}]
             const options = {
                 method: 'POST',
                 headers: {
@@ -85,32 +95,38 @@ export class TranslatePage extends React.Component {
                 },
                 body: JSON.stringify(body)
             };
+            let from = languagesCodes[this.state.origin] ? languagesCodes[this.state.origin] : ''
             const fetch_endpoint_url = 'https://microsoft-translator-text.p.rapidapi.com/translate?to%5B0%5D='
-                + languagesCodes[this.state.target] + '&api-' +
-                'version=3.0&from=' + languagesCodes[this.state.origin] + '&profanityAction=NoAction&textType=plain'
+                + languagesCodes[language] + '&api-' +
+                'version=3.0&from=' + from + '&profanityAction=NoAction&textType=plain'
             fetch(fetch_endpoint_url, options)
                 .then(response => response.json())
                 .then(response => {
-                    let translate_value = response[0].translations[0].text
-                    window.localStorage.setItem("translate value", translate_value)
+                    let translated_value = response[0].translations[0].text
+                    window.localStorage.setItem("translate value", translated_value)
                     this.setState({
-                        translate_value: translate_value
+                        translate_value: translated_value
                     })
+                    insertRowToHistory(this.state.origin, this.state.target, translate_value, translated_value)
                 })
                 .catch(err => console.error(err));
         }
+
 
     }
 
     swapLanguages() {
         let original_language = this.state.origin
+        if (original_language === "Detect Language") {
+            return
+        }
         let orig_value = this.state.original_value
         this.setState({
             origin: this.state.target,
             target: original_language,
             original_value: this.state.translate_value,
             translate_value: orig_value,
-            translate_stub: translationsStub[orig_value],
+            translate_stub: translationsStub[original_language],
             swap: true
         })
     }
@@ -125,7 +141,7 @@ export class TranslatePage extends React.Component {
     render() {
         return (
             <div className={"area-page-container"}>
-                <Title></Title>
+                <Title type={"translate-header"}></Title>
                 <TextAreaBlock translateMessage={this.translateMessage} changeLanguage={this.changeLanguage}
                                target={this.state.target}
                                origin={this.state.origin} original_value={this.state.original_value}
@@ -136,9 +152,11 @@ export class TranslatePage extends React.Component {
                                swap={this.state.swap}>
                 </TextAreaBlock>
                 <div className={"history-container"}>
-                    <HistoryIcon className={"history-icon"}>
-                    </HistoryIcon>
-                    <div className={"history-text"}>История</div>
+                    <Link className={"link-history-icon"} to={"/history"}>
+                        <HistoryIcon className={"history-icon"}>
+                        </HistoryIcon>
+                        <div className={"history-text"}>История</div>
+                    </Link>
                 </div>
             </div>
 

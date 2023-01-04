@@ -8,11 +8,11 @@ export function FooterTextArea(props) {
         <div className={"footer-original-language"}>
             <KeyboardVoiceIcon className={"microphone"}></KeyboardVoiceIcon>
             <div className={"sum-container"}>
-            <div>{props.count + "/5000"}</div>
-            <KeyboardIcon className={"keyboard"}></KeyboardIcon>
-            <ArrowDropDownIcon className={"arrow-down"}></ArrowDropDownIcon>
+                <div>{props.count + "/5000"}</div>
+                <KeyboardIcon className={"keyboard"}></KeyboardIcon>
+                <ArrowDropDownIcon className={"arrow-down"}></ArrowDropDownIcon>
             </div>
         </div>
-        )
+    )
 
 }
