@@ -1,0 +1,1 @@
+export {FooterTextArea} from './FooterTextArea'

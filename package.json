@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/nikitastepnik/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/issues"
   },
-  "homepage": "https://github.com/nikitastepnik/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV#readme"
+  "homepage": "https://github.com/nikitastepnik/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV#readme",
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.2"
+  }
 }

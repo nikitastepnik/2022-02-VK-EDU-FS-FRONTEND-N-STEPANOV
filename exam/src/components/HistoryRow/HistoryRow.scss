@@ -1,0 +1,37 @@
+.container-history-row {
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 120px;
+}
+
+
+.container-history-row:hover {
+  background-color: rgba(245, 246, 247);
+}
+
+.languages-container {
+  display: flex;
+  margin-top: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 15px;
+  font-size: 18px;
+  height: 30%;
+}
+
+.translations-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 18px;
+  height: 70%;
+}
+
+
+.translate-value {
+  color: gray;
+}

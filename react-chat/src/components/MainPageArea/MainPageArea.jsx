@@ -8,7 +8,6 @@ import {LogoutButton} from "../LogoutButton";
 
 
 export function MainPageArea(props) {
-    const avatar = false
     const [messagesCommonChat, setMessagesCommonChat] = useState(null)
     const [chatsApi, setChatsApi] = useState(null)
 
