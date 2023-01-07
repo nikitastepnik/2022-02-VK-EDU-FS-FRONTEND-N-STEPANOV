@@ -25,11 +25,11 @@ function MainPageArea(props) {
                 props.getMessagesCommonChat()
             }, 1000)
         return () => clearInterval(getCommonMessagesTimer);
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         props.getChats()
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     if (props.areaType === "pageChat") {
         return (
