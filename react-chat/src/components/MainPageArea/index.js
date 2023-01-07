@@ -1,2 +1,1 @@
-export {MainPageArea} from "./MainPageArea";
 

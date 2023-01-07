@@ -1,7 +1,7 @@
 import React from "react";
 import './PageProfile.scss'
 import {Header} from "../../components/Header";
-import {MainPageArea} from "../../components/MainPageArea";
+import MainPageArea from "../../components/MainPageArea/MainPageArea";
 
 export class PageProfile extends React.Component {
     constructor(props) {
@@ -14,7 +14,6 @@ export class PageProfile extends React.Component {
 
 
     componentDidMount = () => {
-        console.log(this.props.display_cur_user_account)
         this.getInfoUserCompanion()
     }
 
@@ -36,7 +35,8 @@ export class PageProfile extends React.Component {
             return (
                 <div className={"screen-chat-profile-container"}>
                     <div className={"screen-chat-profile"} id={"screen-chat-profile"}>
-                        <Header display_cur_user_account={this.props.display_cur_user_account} header={"PageProfile"} pagePrevUrl={this.props.pagePrevUrl}
+                        <Header display_cur_user_account={this.props.display_cur_user_account} header={"PageProfile"}
+                                pagePrevUrl={this.props.pagePrevUrl}
                                 typeEntity={false}
                         ></Header>
                         <MainPageArea areaType={"pageProfile"} profileName={this.props.profileName}

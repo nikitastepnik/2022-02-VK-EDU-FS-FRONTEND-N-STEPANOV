@@ -109,14 +109,13 @@ export class App extends React.Component {
                                                                                 display_cur_user_account={this.state.display_cur_user_account}/>}/>
                                     <Route path='chats' element={<PageChatList handleSubmitChat={this.handleSubmitChat}
                                                                                handleClickAccountCircleIcon=
-                                                                                   {this.handleClickAccountCircleIcon}
-                                                                               chats={this.state.chats}/>}/>
+                                                                                   {this.handleClickAccountCircleIcon}/>}/>
                                     <Route path='single-chat' element={<PageChat chatComp={this.state.chatComp}
                                                                                  sumbitChat={this.handleSubmitChat}
                                                                                  handleClickAccountCircleIcon=
                                                                                      {this.handleClickAccountCircleIcon}/>}/>
                                     <Route path="*"
-                                           element={<Navigate to="chats" chats={this.state.chats}/>}></Route></>) :
+                                           element={<Navigate to="chats"/>}></Route></>) :
                                 <Route path='*' element={<PageLogin/>}/>}
                         </Routes>
                     </main>

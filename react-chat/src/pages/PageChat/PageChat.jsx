@@ -4,7 +4,7 @@ import {Centrifuge} from 'centrifuge';
 import './PageChat.scss'
 
 import {Header} from "../../components/Header";
-import {MainPageArea} from "../../components/MainPageArea";
+import MainPageArea from "../../components/MainPageArea/MainPageArea";
 import {InputForm} from "../../components/InputForm";
 import {parseCsrfTokenIfExist} from "../../utils/parseCsrfTokenIfExist";
 
@@ -27,11 +27,12 @@ export class PageChat extends React.Component {
     }
 
     componentDidMount = () => {
-        this.getMessages()
-        this.getChatInfo()
-        this.publishToChanel()
+        if (this.props.chatComp !== "Общий чат") {
+            this.getMessages()
+            this.getChatInfo()
+            this.publishToChanel()
+        }
     }
-
 
     publishToChanel = () => {
         let sub = this.state.centrifuge.newSubscription(this.state.chanel)
