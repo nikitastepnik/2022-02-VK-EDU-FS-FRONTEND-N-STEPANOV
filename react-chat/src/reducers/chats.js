@@ -7,7 +7,7 @@ const initialState = {
 }
 
 
-export default (state = initialState, action) => {
+const chats = (state = initialState, action) => {
     switch (action.type) {
         case GET_CHATS_REQUEST:
             return {
@@ -30,3 +30,5 @@ export default (state = initialState, action) => {
             return state
     }
 }
+
+export default chats

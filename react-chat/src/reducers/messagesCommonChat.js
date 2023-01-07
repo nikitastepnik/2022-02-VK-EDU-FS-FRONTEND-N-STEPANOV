@@ -11,7 +11,7 @@ const initialState = {
     error: ''
 }
 
-export default (state = initialState, action) => {
+const messagesCommonChat = (state = initialState, action) => {
     switch (action.type) {
         case GET_MESSAGES_COMMON_CHAT_REQUEST:
             return {
@@ -34,3 +34,5 @@ export default (state = initialState, action) => {
             return state
     }
 }
+
+export default messagesCommonChat
