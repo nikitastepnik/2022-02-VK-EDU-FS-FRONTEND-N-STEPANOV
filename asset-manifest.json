@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.0718fccc.chunk.css",
-    "main.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.40a510c5.chunk.js",
-    "main.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.40a510c5.chunk.js.map",
-    "runtime-main.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/runtime-main.391c4a14.js",
-    "runtime-main.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/runtime-main.391c4a14.js.map",
-    "static/js/2.eddec212.chunk.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/2.eddec212.chunk.js",
-    "static/js/2.eddec212.chunk.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/2.eddec212.chunk.js.map",
-    "static/js/3.c322f209.chunk.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/3.c322f209.chunk.js",
-    "static/js/3.c322f209.chunk.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/3.c322f209.chunk.js.map",
+    "main.css": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.68620627.css",
+    "main.js": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.6cc17bbf.js",
     "index.html": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/index.html",
-    "static/css/main.0718fccc.chunk.css.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.0718fccc.chunk.css.map",
-    "static/js/2.eddec212.chunk.js.LICENSE.txt": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/2.eddec212.chunk.js.LICENSE.txt"
+    "main.68620627.css.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/css/main.68620627.css.map",
+    "main.6cc17bbf.js.map": "/2022-2-VK-EDU-FS-FRONTEND-N-STEPANOV/static/js/main.6cc17bbf.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.391c4a14.js",
-    "static/js/2.eddec212.chunk.js",
-    "static/css/main.0718fccc.chunk.css",
-    "static/js/main.40a510c5.chunk.js"
+    "static/css/main.68620627.css",
+    "static/js/main.6cc17bbf.js"
   ]
 }
