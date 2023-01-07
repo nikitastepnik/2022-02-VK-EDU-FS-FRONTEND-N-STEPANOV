@@ -44,8 +44,8 @@ export function Header(props) {
             <div className="header-frame">
                 <div className="header-frame-content">
                     <Link className={"link-cur-user-profile"} to={"/profile"}>
-                    <DehazeIcon id="icon-dehaze-screen-list-chats" onClick={() =>
-                        props.handleClickAccountCircleIcon(parseCsrfTokenIfExist(), "pageChatList")}></DehazeIcon>
+                        <DehazeIcon id="icon-dehaze-screen-list-chats" onClick={() =>
+                            props.handleClickAccountCircleIcon(parseCsrfTokenIfExist(), "pageChatList")}></DehazeIcon>
                     </Link>
                     <div className="form-text" id="form-text-screen-list-chats">Messenger</div>
                     <SearchIcon id="icon-search-screen-list-chats"></SearchIcon>
@@ -60,9 +60,11 @@ export function Header(props) {
                         <ArrowBackIcon id="icon-arrow-back-screen-profile-chat">
                         </ArrowBackIcon>
                     </Link>
-                    {props.display_cur_user_account ? <div className="form-text" id="form-text-screen-chat-profile">Edit Profile</div>
-                    : (props.typeEntity ? <div className="form-text" id="form-text-screen-chat-profile">User Info</div>
-                        : <div className="form-text" id="form-text-screen-chat-profile">Chat Info</div>)}
+                    {props.display_cur_user_account ?
+                        <div className="form-text" id="form-text-screen-chat-profile">Edit Profile</div>
+                        : (props.typeEntity ?
+                            <div className="form-text" id="form-text-screen-chat-profile">User Info</div>
+                            : <div className="form-text" id="form-text-screen-chat-profile">Chat Info</div>)}
                     {props.display_cur_user_account ? <DoneIcon className="icon-done-screen-profile-chat"></DoneIcon>
                         : null}
                 </div>
